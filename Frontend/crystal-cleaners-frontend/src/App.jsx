@@ -21,7 +21,6 @@ function App() {
         <Route path="/contact" element={<Contact />} />
         <Route path="/faq" element={<FAQ />} />
         <Route path="/pricing" element={<Pricing />} />
-        {/* Note: I removed the duplicate '/contact' route to avoid redundancy. */}
       </Routes>
       <Footer /> {/* Footer is now displayed after the routes */}
     </div>
