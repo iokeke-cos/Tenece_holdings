@@ -1,8 +1,18 @@
 import express from "express";
-const app = express();
-const PORT = 3000;
+import dotenv from "dotenv";
+import cors from "cors";
+import morgan from "morgan";
+import connectDB from "./config/db.js";
 
-// Root route
+dotenv.config();
+const app = express();
+
+// Middleware
+app.use(express.json());
+app.use(cors());
+app.use(morgan("dev"));
+
+// Default route
 app.get("/", (req, res) => {
   res.json({
     message: "Welcome to Crystal Cleaners API 🚀",
@@ -72,6 +82,11 @@ app.get("/pricing", (req, res) => {
   });
 });
 
-app.listen(PORT, () => {
-  console.log(`Crystal Cleaners API running at http://localhost:${PORT}`);
+// Connect DB and start server
+const PORT = process.env.PORT || 5000;
+
+connectDB().then(() => {
+  app.listen(PORT, () => {
+    console.log(`🚀 Server running on http://localhost:${PORT}`);
+  });
 });
