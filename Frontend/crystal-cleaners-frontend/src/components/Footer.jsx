@@ -18,7 +18,7 @@ export default function Footer() {
         <footer>
             <div className="first-part">
                 <a href="#home">
-                <img src={logo} className='logo'/>
+                <img src={logo} className='footer-logo'/>
                 </a>
                 <nav>
                     <ul>
@@ -26,22 +26,21 @@ export default function Footer() {
                             <a href="#home">Home</a>
                         </li>
                         <li>
-                            <a href="#about">About</a>
+                            <a href="/about">About</a>
                         </li>
                         <li>
-                            <a href="#services">Services <span><img src={arrow} /></span></a>
+                            <a href="/services">Services <span><img src={arrow} /></span></a>
                         </li>
                         <li>
-                            <a href="#faq">FAQ</a>
+                            <a href="/faq">FAQ</a>
                         </li>
                         <li>
-                            <a href="#contact">Contact</a>
+                            <a href="/contact">Contact</a>
                         </li>
                         <li>
-                            <a href="#pricing">Pricing</a>
+                            <a href="/pricing">Pricing</a>
                         </li>
                     </ul>
-
                     {/* these are the linkedin, X, and Facebook logos.
                     I added an outer-logos div because I needed to adjust the position of the entire
                     logo container */}

@@ -1,8 +1,7 @@
 
-
-
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Wix+Madefor+Display:wght@400..800&display=swap');
 
+/* Font import for overall consistency, ensure it's loaded */
 .wix-madefor-display {
   font-family: "Wix Madefor Display", sans-serif;
   font-optical-sizing: auto;
@@ -10,157 +9,176 @@
   font-style: normal;
 }
 
-.logo {
-  position: relative;
-  top: 50px;
-  right: 90px;
-}
-
+/* Global body and root styling for sticky footer */
 html, body {
   height: 100%;
   margin: 0;
   display: flex;
   flex-direction: column;
-  
 }
 
-#root {  /* or your main container if not using React root */
+#root {
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
+  min-height: 100vh; /* Ensures root takes at least full viewport height */
   width: 100%;
 }
 
+/* Define global CSS variables */
+:root {
+  --primary-color: #00084D;
+  --font-color: white; /* Renamed from --font to avoid conflict with font-family */
+}
+
+/* Main footer container styling */
 footer {
-  margin-top: auto; /* pushes footer to bottom */
-  padding: 60px;
+  margin-top: auto; 
+  padding: 60px 0 0; 
+  background-color: var(--primary-color);
+  font-family: "Wix Madefor Display", sans-serif;
+  color: var(--font-color); 
+  font-size: 16px;
+  max-width: 1440px; 
+  width: 100%; 
+  display: flex;
+  flex-direction: column; 
+  align-items: center; 
+  box-sizing: border-box; 
+}
+
+/* Styles for the top section of the footer (Logo, Nav, Social Icons) */
+footer .first-part {
+  display: flex; 
+  flex-direction: row; 
+  align-items: center; 
+  justify-content: space-between; 
+  width: 100%; /* Take full width of parent footer */
+  padding: 0 40px; 
+  box-sizing: border-box;
+  margin-bottom: 40px; 
+}
+
+/* Specific styling for the logo image within the footer */
+.footer-logo {
+  width: 100px; 
+  height: auto;
+  flex-shrink: 0; 
   
 }
 
-nav {
-  margin-bottom: 40px;
+/* Navigation section within the footer (Home, About, Services...) */
+footer nav {
+  flex-grow: 1; 
+  justify-content: center; 
+  background-color: var(--primary-color); 
+  padding: 0; 
+  margin: 0; 
+  border: none; 
+  box-shadow: none; 
+  border-radius: 0; 
 }
-
-
-:root{
-  --primary-color: #00084D;
-  --font: white;
-}
-
-
-
-footer {
-  background-color: var(--primary-color);
-  font-family: "Wix Madefor Display", sans-serif;
-  color: var(--font);
-  font-size: 16px;
-  max-width: 1440px;
-   display: flex;
-  flex-direction: column;
-  align-items: center; 
-}
-
-
-
 
 
 footer nav ul {
   list-style: none;
   display: flex;
-  gap: 2rem;
+  gap: rem; /* Space between individual nav links */
   padding: 0;
-  margin: 0;
+  margin: 0; 
   align-items: center;
-  justify-content: center;
-  
-  
+  /* background-color: transparent; Ensure no background color on the ul itself */
+  background-color: var(--primary-color);
 }
 
-footer .first-part nav ul a{
-  position: relative;
+footer .first-part nav ul a {
+  position: relative; 
   text-decoration: none;
-  color: var(--font);
+  color: #CCCCCC; /* CHANGED: Off-white color for inactive links */
+  transition: transform 0.3s ease, color 0.3s ease; 
+  color: var(--font-color); 
   transition: transform 0.3s ease;
   display: block;
-  /* padding-bottom: 3px; */
-  padding: 20px 20px;  
+  padding: 10px 15px; /* Padding for click area of links */
   border: none;
-  
-
 }
-
- 
-
 
 footer .first-part nav ul a:hover {
-  transform: translateY(-3px);    
+  transform: translateY(-3px); /* Hover effect for links */
   font-weight: 600;
-  
-
+  color: white;
 }
 
-hr {
-  width: 95%;
-  position: relative;
-  bottom: 35px;
+/* ADDED: Styling for active links in the footer */
+footer .first-part nav ul a.active {
+  color: white; /* White color for active/clicked links */
+  font-weight: 600; /* Make active links bold */
+}
+
+/* Social media icons container */
+.outer-logos {
+  display: flex; /* Make it a flex container */
+  align-items: center; /* Vertically center logos */
+  gap: 20px; /* Space between the social icons */
+  /* Remove conflicting positioning properties */
+  position: static;
+  left: auto;
+  bottom: auto;
+  margin-left: auto; /* Pushes the social logos to the far right within first-part */
+  flex-shrink: 0; /* Prevent social icons from shrinking */
 }
 
 .logos {
   display: flex;
-  padding-left: 800px;
-  border: 1px solid var(--primary-color);
-  width: 120px;
-  display: flex;
-  justify-content: space-between;
-  border: none;
-  
-    
-
+  gap: 15px; /* Space between individual social icons */
+  border: none; /* Ensure no border */
+  padding: 0; /* Remove any padding-left */
+  width: auto; /* Allow width to be determined by content */
+  justify-content: flex-end; /* Ensure icons align right within their container */
 }
 
-.outer-logos {
-  position: relative;
-  left: 85px;
-  bottom: 30px;
-  
-  
+.logos img {
+  width: 24px; /* Set size of social icons */
+  height: auto;
 }
 
+/* Horizontal rule separator */
+hr {
+  width: 90%; /* Width for the line */
+  border: none; /* Remove default browser border */
+  border-top: 1px solid rgba(255, 255, 255, 0.2); /* Custom light white line */
+  margin: 0 auto; /* Center the line, no vertical margin here as controlled by first-part/second-part padding */
+}
+
+/* Bottom section of the footer (copyright, privacy policy, cookies) */
 .second-part {
-  width: 100%;                    /* take full width of footer */
-  display: flex;                  /* arrange children side by side */
-  justify-content: space-between; /* push them to opposite ends */
-  align-items: center;            /* vertical alignment */
-  padding: 0 50px;                /* add some horizontal breathing space */
+  width: 100%;
+  display: flex;
+  justify-content: space-between; /* Push copyright and privacy to opposite ends */
+  align-items: center;
+  padding: 30px 40px; /* Add padding to copyright and privacy/cookies */
   box-sizing: border-box;
 }
 
 .second-part p {
-  margin: 0;  /* remove default <p> margins so alignment is clean */
-  padding-bottom: 30px;
+  margin: 0; /* Remove default paragraph margins */
 }
 
-.privacy-policy {
-  position: relative;
-  right: 20px;
-
+.privacy {
+  display: flex; /* Make privacy a flex container for its spans */
+  gap: 10px; /* Space between "Privacy Policy" and "Cookies" */
+  align-items: center;
 }
 
-.cookies {
-  position: relative;
-  left: 20px;
+/* Reset any specific positioning on inner text elements */
+.privacy-policy, .cookies, .copyright {
+  position: static;
+  right: auto;
+  left: auto;
+  margin: 0;
 }
 
-.copyright {
-  position: relative;
-  right: 20px;
-}
-
-
-
-
-
-
-
-
-
+/* Ensure the `nav` outside of footer is not affected (if applicable) */
+/* This rule exists in Navbar.css for your main nav, but ensures no accidental override */
+/* nav:not(footer nav) {
+    // Your existing navbar styles here, or specific overrides if needed
+} */
