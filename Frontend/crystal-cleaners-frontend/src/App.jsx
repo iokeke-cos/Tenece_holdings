@@ -6,7 +6,7 @@ import About from "./components/pages/About";
 import Services from "./components/pages/Services";
 import Contact from "./components/pages/Contact";
 import FAQ from "./components/pages/FAQ";
-import Pricing from "./https://github.com/iokeke-cos/Tenece_holdings/tree/main/src/components/pages/Pricing.jsx";
+import Pricing from "./components/pages/Pricing";
 import Footer from './components/Footer.jsx'; // Footer component imported from main branch
 
 
