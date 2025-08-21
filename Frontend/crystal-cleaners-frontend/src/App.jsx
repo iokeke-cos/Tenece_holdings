@@ -6,7 +6,9 @@ import About from "./components/pages/About";
 import Services from "./components/pages/Services";
 import Contact from "./components/pages/Contact";
 import FAQ from "./components/pages/FAQ";
-import Pricing from "./components/pages/Pricing";
+import Pricing from "./https://github.com/iokeke-cos/Tenece_holdings/tree/main/src/components/pages/Pricing.jsx";
+import Footer from './components/Footer.jsx'; // Footer component imported from main branch
+
 
 function App() {
   return (
@@ -18,9 +20,10 @@ function App() {
         <Route path="/services" element={<Services />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/faq" element={<FAQ />} />
-        <Route path="/contact" element={<Contact />} />
         <Route path="/pricing" element={<Pricing />} />
+        {/* Note: I removed the duplicate '/contact' route to avoid redundancy. */}
       </Routes>
+      <Footer /> {/* Footer is now displayed after the routes */}
     </div>
   );
 }
