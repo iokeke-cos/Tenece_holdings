@@ -38,17 +38,61 @@ app.get("/about", (req, res) => {
 });
 
 // Services
+const services = [
+  {
+    id: 1,
+    name: "Office Cleaning",
+    description: "Comprehensive cleaning for office spaces, desks, and common areas.",
+    price: "$100"
+  },
+  {
+    id: 2,
+    name: "Window Cleaning",
+    description: "Streak-free cleaning for all window types, inside and out.",
+    price: "$80"
+  },
+  {
+    id: 3,
+    name: "Carpet Cleaning",
+    description: "Deep carpet cleaning using eco-friendly products.",
+    price: "$120"
+  },
+  {
+    id: 4,
+    name: "Bathroom Cleaning",
+    description: "Sanitization and scrubbing of all bathroom fixtures and surfaces.",
+    price: "$60"
+  },
+  {
+    id: 5,
+    name: "Bedroom Cleaning",
+    description: "Dusting, vacuuming, and organizing bedrooms for comfort and cleanliness.",
+    price: "$70"
+  },
+  {
+    id: 6,
+    name: "Kitchen Cleaning",
+    description: "Degreasing, scrubbing, and disinfecting kitchen surfaces and appliances.",
+    price: "$90"
+  }
+];
+
+// GET /services → list all services
 app.get("/services", (req, res) => {
-  res.json({
-    services: [
-      "Office Cleaning",
-      "Window Cleaning",
-      "Carpet Cleaning",
-      "Bathroom Cleaning",
-      "Bedroom Cleaning",
-      "Kitchen Cleaning"
-    ]
-  });
+  res.json(services);
+});
+
+
+//GET /services/:id → get a single service by id
+app.get("/services/:id", (req, res) => {
+  const serviceId = parseInt(req.params.id);
+  const service = services.find(s => s.id === serviceId);
+
+  if (!service) {
+    return res.status(404).json({ error: "Service not found" });
+  }
+
+  res.json(service);
 });
 
 // FAQs
