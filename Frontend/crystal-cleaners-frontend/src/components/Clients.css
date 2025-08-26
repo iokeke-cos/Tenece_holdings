@@ -1,0 +1,82 @@
+/* Clients.css */
+
+.clients {
+  background-color: #00084D;; /* A light, soft grey-blue background */
+  padding: 4rem 2rem; /* Ample padding */
+  text-align: center; /* Center text content */
+  font-family: "Wix Madefor Display", sans-serif; /* Consistent font */
+  color: white; /* Dark text color */
+  overflow: hidden;
+}
+
+.clients-container {
+  max-width: 1000px; /* Constrain content width */
+  margin: 0 auto; /* Center the container */
+}
+
+.clients h2 {
+  font-size: 2.2rem; /* Heading size */
+  font-weight: 700;
+  margin-bottom: 1rem;
+  line-height: 1.2;
+}
+
+.clients p {
+  font-size: 1.1rem;
+  margin-bottom: 3rem; /* Space below paragraph before logos */
+  color: white; /* Slightly lighter text for description */
+  font-weight: bold;
+  font-weight: 500;
+}
+
+.client-logos {
+  display: flex;
+  flex-wrap: wrap; /* Allow logos to wrap */
+  justify-content: center; /* Center logos horizontally */
+  gap: 3.5rem; /* Space between logos */
+  margin-top: 2rem;
+  animation: slideLogos 30s linear infinite; /* Apply the animation */
+  justify-content: flex-start;
+  
+}
+
+.logo-item {
+  width: 150px; /* Fixed width for each logo container */
+  height: 80px; /* Fixed height */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.logo-item img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain; /* Ensure logos fit without cropping */
+  transition: all 0.3s ease;
+}
+
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .clients {
+    padding: 3rem 1.5rem;
+  }
+
+  .clients h2 {
+    font-size: 1.8rem;
+  }
+
+  .clients p {
+    font-size: 1rem;
+  }
+
+  .client-logos {
+    gap: 1.5rem; /* Smaller gap on mobile */
+  }
+
+  .logo-item {
+    width: 120px; /* Smaller logo items on mobile */
+    height: 60px;
+  }
+}
