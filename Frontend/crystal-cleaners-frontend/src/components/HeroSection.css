@@ -1,0 +1,135 @@
+/* --- General Hero Section Layout --- */
+.hero {
+  padding-top: 2rem;  
+  background: #f9fafb; /* Light background for the overall section */
+  height: 60p;
+}
+
+.hero-container {
+  margin: 0 auto; 
+  display: grid;
+  grid-template-columns: 1fr; 
+  gap: 3rem; 
+  align-items: center; 
+  width: 100%; 
+  
+}
+
+/* --- Left Side: Hero Text and Features --- */
+.hero-text {
+  display: flex; 
+  flex-direction: column; /* Stack children (h1, features) vertically */
+  justify-content: center; /* Vertically center content within hero-text's available space */
+  align-items: flex-start; /* Align text and features to the start (left) */
+  padding: 0 2rem; /* Horizontal padding inside the text column */
+  box-sizing: border-box; /* Include padding in element's total width */
+}
+
+.hero-text h1 {
+  font-size: 2.8rem; /* Large font size for the main heading */
+  font-weight: bold;
+  color: #111827; /* Dark text color */
+  line-height: 1.2; /* Tighter line spacing for readability */
+  margin-bottom: 0.5rem; /* Space below the heading */
+  text-align: left; /* Explicitly left-align the text */
+  padding-left: 6rem;
+}
+
+.features {
+  margin-top: 1.5rem; /* Space above the features list */
+  display: flex;
+  flex-direction: row; /* Stack individual feature items vertically */
+  gap: 1rem; /* Space between each feature line (e.g., "Instant Quotes") */
+  font-size: 1.1rem; /* Font size for the feature text */
+  color: #374151; /* Grey text color for features */
+  padding-left: 6rem;
+
+}
+
+.features div {
+  display: flex; /* Make each feature line a flex container */
+  align-items: center; /* Vertically align the icon and text */
+  gap: 0.8rem; /* Space between the checkmark icon and its text */
+}
+
+.feature-icon {
+  color:#2937b1; /* Blue color for the checkmark icons */
+  font-size: 1.2em; /* Size of the checkmark icon relative to parent font size */
+}
+
+/* --- Right Side: Image Column --- */
+.hero-image-column {
+  position: relative; 
+  width: 100%; 
+  overflow: hidden; 
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15); 
+  display: block; 
+}
+
+.hero-main-image { /* Styling for the <img> tag itself */
+  width: 100%; 
+  height: 100%; 
+  object-fit: cover; 
+  display: block; 
+}
+
+.hero-form-overlay {
+  position: absolute;
+  bottom: 40%; 
+  left: 50%;
+  padding: 1.5rem;
+  width: 80%;
+  max-width: 400px;
+}
+
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 1024px) {
+    .hero-container {
+        grid-template-columns: 1fr; 
+        gap: 2rem; 
+    }
+
+    .hero-text h1 {
+        font-size: 2.2rem;
+        text-align: center; 
+    }
+
+    .features {
+        justify-content: center;
+        align-items: center;
+        flex-direction: row; 
+        flex-wrap: wrap;
+        padding: 0; 
+    }
+
+    .hero-image-column { 
+        height: 400px;
+        max-height: 400px; 
+    }
+}
+
+@media (max-width: 768px) {
+  .hero {
+    padding: 2rem 0; 
+  }
+
+  .hero-text h1 {
+    font-size: 1.8rem;
+  }
+
+  .features {
+    flex-direction: column; 
+    gap: 0.8rem;
+    align-items: flex-start; 
+    padding-left: 1rem; 
+  }
+
+  .hero-image-column { 
+      height: 300px; 
+      max-height: 300px;
+  }
+
+}
+
+  

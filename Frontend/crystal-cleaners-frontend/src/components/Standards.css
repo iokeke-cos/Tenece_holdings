@@ -1,0 +1,158 @@
+/* StandardsSection.css */
+
+.standards-section {
+  background-color: #FAE084;
+  padding: 6rem 2rem; 
+  text-align: center; 
+  font-family: "Wix Madefor Display", sans-serif;
+  color: #111827;
+}
+
+.standards-content-wrapper {
+  max-width: 1000px; /* Wider content wrapper */
+  margin: 0 auto; /* Center the wrapper */
+  display: flex;
+  flex-direction: row; /* Arrange text and images side-by-side */
+  align-items: center; /* Vertically align items */
+  gap: 4rem; /* Space between text and image sections */
+  text-align: left; /* Realign text content to left within its column */
+}
+
+/* --- Left Side: Text Content --- */
+.standards-text-content {
+  flex: 1; /* Allow text content to grow */
+  max-width: 50%; /* Control text width for readability */
+}
+
+.standards-heading {
+  font-size: 3rem;
+  font-weight: 600; /* Extra bold for prominence */
+  line-height: 1.1;
+  margin-bottom: 2.5rem;
+}
+
+.benefits-list {
+  list-style: none; /* Remove default list styling */
+  padding: 0;
+  margin-bottom: 2.5rem; /* Space below list */
+}
+
+.benefit-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.8rem; /* Space between list items */
+  font-size: 1.1rem;
+  color: #333;
+}
+
+.check-icon {
+  color: #2937b1; /* Primary blue for checkmarks */
+  font-size: 1.2rem;
+  margin-right: 0.8rem; /* Space between icon and text */
+  flex-shrink: 0; /* Prevent icon from shrinking */
+}
+
+.book-home-clean-button {
+  background-color: #2937B1; /* Primary blue for the button */
+  color: white;
+  padding: 1rem 2.5rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-bottom: 1rem; /* Space below button */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.book-home-clean-button:hover {
+  background-color: #1d4ed8; /* Darker blue on hover */
+}
+
+.standards-booking-info {
+  font-size: 0.9rem;
+  color: #6b7280;
+  margin-top: 0;
+}
+
+/* --- Right Side: Single Image --- */
+.standards-image-collage {
+  flex: 1; /* Allow image container to take remaining space */
+  display: flex; /* Use flex to center the single image if needed, or simply make it fill */
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.collage-img { /* NEW: Styling for the single image */
+  width: 100%;
+  max-width: 500px; /* Limit the image size to match visual */
+  height: auto;
+  object-fit: cover;
+  display: block; /* Remove extra space below image */
+}
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 1024px) {
+  .standards-heading {
+    font-size: 2.8rem;
+  }
+  .standards-content-wrapper {
+    flex-direction: column; /* Stack vertically on smaller screens */
+    gap: 3rem;
+  }
+  .standards-text-content {
+    max-width: 100%; /* Allow text to take full width */
+    text-align: center; /* Center text when stacked */
+  }
+  .benefits-list {
+    display: flex; /* Make list flex to wrap items */
+    flex-wrap: wrap;
+    justify-content: center; /* Center benefits horizontally */
+    gap: 1.5rem; /* Space between items when wrapped */
+  }
+  .benefit-item {
+    margin-bottom: 0; /* Remove individual item margin when wrapped */
+  }
+  .collage-single-img {
+    max-width: 80%; /* Smaller on tablet */
+    height: auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .standards-section {
+    padding: 4rem 1.5rem;
+  }
+  .standards-heading {
+    font-size: 2.2rem;
+    margin-bottom: 2rem;
+  }
+  .benefits-list {
+    margin-bottom: 2rem;
+    flex-direction: column; /* Stack benefits vertically again for very small screens */
+    align-items: flex-start; /* Align items to left within list */
+  }
+  .standards-text-content {
+    padding: 0 1rem; /* Add some horizontal padding */
+  }
+ 
+  .collage-single-img { /* Further adjust size for mobile */
+    max-width: 95%; /* Take almost full width */
+    height: auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .standards-heading {
+    font-size: 1.8rem;
+  }
+  .benefit-item {
+    font-size: 1rem;
+  }
+  .book-home-clean-button {
+    padding: 0.8rem 2rem;
+    font-size: 1rem;
+  }
+}
