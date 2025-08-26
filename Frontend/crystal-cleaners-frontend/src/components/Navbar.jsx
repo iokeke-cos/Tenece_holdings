@@ -1,14 +1,35 @@
-import React, { useState } from "react";
+import React, { useState , useEffect, useRef } from "react";
 import "./Navbar.css";
-import { Link, NavLink } from "react-router-dom";
+import { Link as ScrollLink } from "react-scroll";
+import { NavLink, Link } from "react-router-dom";
+
 import { FaPhone, FaChevronDown } from "react-icons/fa";
 
 export const Navbar = () => {
+  
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const dropdownRef = useRef(null);
 
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
   };
+
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target)
+      ) {
+        setIsDropdownOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   return (
     <nav>
@@ -29,9 +50,11 @@ export const Navbar = () => {
         <li>
           <NavLink to="/about">About</NavLink>
         </li>
-        <li className="services-link">
+        <li className="services-link" ref={dropdownRef}>
         <div className="dropdown-container">
-          <NavLink to="/services">Services</NavLink>
+          <ScrollLink to="services" smooth={true} duration={200} offset={0} delay={0}>
+              Services
+            </ScrollLink>
         <FaChevronDown
           className="dropdown-arrow"
           onClick={toggleDropdown}
@@ -40,10 +63,13 @@ export const Navbar = () => {
         </div>
           {isDropdownOpen && ( 
             <ul className="services-dropdown">
-              <li><span>Residential</span></li>
-              <li><span>Commercial</span></li>
-              <li><span>Carpet Cleaning</span></li>
+              <li><span>Office Cleaning</span></li>
               <li><span>Window Cleaning</span></li>
+              <li><span>Carpet Cleaning</span></li>
+              <li><span>Bathroom Cleaning</span></li>
+              <li><span>Bedroom Cleaning</span></li>
+              <li><span>Kitchen Cleaning</span></li>
+
             </ul>
           )}
         </li>

@@ -23,7 +23,7 @@ export default function ServicesSection() {
   ];
 
   return (
-    <section className="services-section">
+    <section id="services"className="services-section">
       <div className="services-content-wrapper">
         <h2 className="services-heading">Our Top Rated Cleaning Services</h2>
         <p className="services-description">
