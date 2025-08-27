@@ -39,12 +39,12 @@ export default function Footer() {
                 <NavLink to="/about">About</NavLink>
               </li>
 
-              <li>                
-                  <NavLink to="/services" className="nav-link">
-                    Services
-                  </NavLink>
+              <li>
+                <NavLink to="/services" className="nav-link">
+                  Services
+                </NavLink>
 
-                                   
+
                 {/* I'm working on the drop down menu for the footer services tab */}
 
                 {/* {isOpen && (
@@ -59,7 +59,7 @@ export default function Footer() {
                       <NavLink>Service3</NavLink>
                     </li>
                   </ul>
-                )} */} 
+                )} */}
 
               </li>
 
@@ -73,6 +73,10 @@ export default function Footer() {
 
               <li>
                 <NavLink to="pricing">Pricing</NavLink>
+              </li>
+
+              <li>
+                <NavLink to="blog">Blog</NavLink>
               </li>
             </ul>
             {/* these are the linkedin, X, and Facebook logos.

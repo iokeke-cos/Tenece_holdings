@@ -1,12 +1,9 @@
-import React, { useState , useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "./Navbar.css";
-import { Link as ScrollLink } from "react-scroll";
 import { NavLink, Link } from "react-router-dom";
-
 import { FaPhone, FaChevronDown } from "react-icons/fa";
 
 export const Navbar = () => {
-  
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const dropdownRef = useRef(null);
 
@@ -17,10 +14,7 @@ export const Navbar = () => {
   // Close dropdown when clicking outside
   useEffect(() => {
     const handleClickOutside = (event) => {
-      if (
-        dropdownRef.current &&
-        !dropdownRef.current.contains(event.target)
-      ) {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
         setIsDropdownOpen(false);
       }
     };
@@ -51,25 +45,37 @@ export const Navbar = () => {
           <NavLink to="/about">About</NavLink>
         </li>
         <li className="services-link" ref={dropdownRef}>
-        <div className="dropdown-container">
-          <ScrollLink to="services" smooth={true} duration={200} offset={0} delay={0}>
-              Services
-            </ScrollLink>
-        <FaChevronDown
-          className="dropdown-arrow"
-          onClick={toggleDropdown}
-          style={{ transform: isDropdownOpen ? 'rotate(180deg)' : 'rotate(0deg)', color: isDropdownOpen ? 'black' : '#6b7280' }}
-        />
-        </div>
-          {isDropdownOpen && ( 
+          <div className="dropdown-container">
+            <NavLink to="/services">Services</NavLink>
+            <FaChevronDown
+              className="dropdown-arrow"
+              onClick={toggleDropdown}
+              style={{
+                transform: isDropdownOpen ? "rotate(180deg)" : "rotate(0deg)",
+                color: isDropdownOpen ? "black" : "#6b7280",
+              }}
+            />
+          </div>
+          {isDropdownOpen && (
             <ul className="services-dropdown">
-              <li><span>Office Cleaning</span></li>
-              <li><span>Window Cleaning</span></li>
-              <li><span>Carpet Cleaning</span></li>
-              <li><span>Bathroom Cleaning</span></li>
-              <li><span>Bedroom Cleaning</span></li>
-              <li><span>Kitchen Cleaning</span></li>
-
+              <li>
+                <span>Office Cleaning</span>
+              </li>
+              <li>
+                <span>Window Cleaning</span>
+              </li>
+              <li>
+                <span>Carpet Cleaning</span>
+              </li>
+              <li>
+                <span>Bathroom Cleaning</span>
+              </li>
+              <li>
+                <span>Bedroom Cleaning</span>
+              </li>
+              <li>
+                <span>Kitchen Cleaning</span>
+              </li>
             </ul>
           )}
         </li>
@@ -81,6 +87,9 @@ export const Navbar = () => {
         </li>
         <li>
           <NavLink to="/pricing">Pricing</NavLink>
+        </li>
+        <li>
+          <NavLink to="/blog">Blog</NavLink>
         </li>
       </ul>
 

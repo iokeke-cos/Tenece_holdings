@@ -3,26 +3,30 @@ import "./App.css";
 import { Navbar } from "./components/Navbar";
 import Home from "./components/pages/Home";
 import About from "./components/pages/About";
-import ServicesSection from "./components/ServicesSection";
+import Services from "./components/pages/Services";
 import Contact from "./components/pages/Contact";
 import FAQ from "./components/pages/FAQ";
 import Pricing from "./components/pages/Pricing";
-import Footer from './components/Footer.jsx'; // Footer component imported from main branch
+import Blog from "./components/pages/Blog";
+import Footer from './components/Footer.jsx';
 
 
 function App() {
   return (
     <div className="App">
       <Navbar />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/services" element={<ServicesSection />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/faq" element={<FAQ />} />
-        <Route path="/pricing" element={<Pricing />} />
-      </Routes>
-      <Footer /> {/* Footer is now displayed after the routes */}
+      <div className="main-content-wrapper"> {/* Add this wrapper */}
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/services" element={<Services />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/faq" element={<FAQ />} />
+          <Route path="/pricing" element={<Pricing />} />
+          <Route path="/blog" element={<Blog />} />
+        </Routes>
+      </div> {/* Close the wrapper */}
+      <Footer />
     </div>
   );
 }
