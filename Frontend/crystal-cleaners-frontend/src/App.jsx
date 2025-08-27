@@ -9,7 +9,7 @@ import FAQ from "./components/pages/FAQ";
 import Pricing from "./components/pages/Pricing";
 import Blog from "./components/pages/Blog";
 import Footer from './components/Footer.jsx';
-
+import BlogPost from "./components/pages/BlogPost";
 
 function App() {
   return (
@@ -24,6 +24,7 @@ function App() {
           <Route path="/faq" element={<FAQ />} />
           <Route path="/pricing" element={<Pricing />} />
           <Route path="/blog" element={<Blog />} />
+          <Route path="/blog/:postId" element={<BlogPost />} />
         </Routes>
       </div> {/* Close the wrapper */}
       <Footer />
