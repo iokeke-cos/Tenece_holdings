@@ -111,6 +111,7 @@
   text-transform: uppercase;
   font-weight: 600;
   font-size: 0.875rem;
+  margin-top: 1rem;
   transition: background-color 0.3s ease;
 }
 

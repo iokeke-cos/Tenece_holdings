@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&display=swap');
+
 .active {
     color: black;
 }
@@ -11,14 +12,15 @@ nav {
     position: sticky;
     top: 0;
     padding: 5px;
+    z-index: 1000; /* Ensures the navbar is always on top */
 }
 
 nav .brand {
-  display: flex;
-  align-items: center;
-  margin-left: 100px;
-  flex: 0;
-  gap: 0.5rem; 
+    display: flex;
+    align-items: center;
+    margin-left: 100px;
+    flex: 0;
+    gap: 0.5rem;
 }
 
 nav .title {
@@ -30,42 +32,42 @@ nav .title {
 }
 
 nav .title .logo {
-  width: 50px;   
-  height: auto;  
-  object-fit: contain;
-  margin-right: -0.3rem; 
+    width: 50px;
+    height: auto;
+    object-fit: contain;
+    margin-right: -0.3rem;
 }
 
 nav .brand-text {
-  display: flex;
-  flex-direction: column;
-  line-height: 1.2;
+    display: flex;
+    flex-direction: column;
+    line-height: 1.2;
 }
 
 nav .brand-name {
-  font-size: 1rem;
-  font-weight: bold;
-  font-family: 'Montserrat', sans-serif;
+    font-size: 1rem;
+    font-weight: bold;
+    font-family: 'Montserrat', sans-serif;
 }
 
 nav .brand-sub {
-  font-size: 1rem;
-  font-weight: bold;
-  font-family: 'Montserrat', sans-serif;
+    font-size: 1rem;
+    font-weight: bold;
+    font-family: 'Montserrat', sans-serif;
 }
 
 nav ul {
-  list-style: none;
-  display: flex;
-  justify-content: center;
-  flex: 1; 
-  gap: 0.5rem;
-  margin: 0;
-  padding: 0;
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    flex: 1;
+    gap: 0.5rem;
+    margin: 0;
+    padding: 0;
 }
 
 nav ul li {
-   list-style: none; 
+    list-style: none;
 }
 
 nav ul li a {
@@ -84,7 +86,7 @@ nav ul li a:not(.active):hover {
 
 /* Right-side button */
 .rightbtn {
-  margin-right: 7rem; 
+    margin-right: 7rem;
 }
 
 /* Position the services link relative to its children */
@@ -100,7 +102,7 @@ nav ul li.services-link {
 }
 
 .dropdown-arrow {
-    margin-left: -12px; /* Adjust this value to bring the arrow closer */
+    margin-left: -12px;
     font-size: 0.8rem;
     cursor: pointer;
     transition: transform 0.2s ease-in-out;
@@ -109,13 +111,12 @@ nav ul li.services-link {
 /* Style and position the dropdown menu */
 .services-dropdown {
     list-style: none;
-    display: flex; 
+    display: flex;
     flex-direction: column;
-    position: absolute; /* The key to fixing the position */
+    position: absolute;
     top: 100%;
-    left: 0;    
-    /* Add a small space so it's not right up against the link */
-    transform: translateX(10px); 
+    left: 0;
+    transform: translateX(10px);
     background-color: white;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     border: 1px solid #e0e0e0;
@@ -126,41 +127,41 @@ nav ul li.services-link {
 }
 
 /* Styles for the items inside the dropdown */
-.services-dropdown li span {
+.services-dropdown li a {
     white-space: nowrap;
-    padding: 0.75rem 1rem;
-    color: #333; 
+     padding: 0.1rem 1rem;
+    color: #333;
     display: block;
-    cursor: default; 
+    text-decoration: none;
 }
 
 /* Change the text color to black on hover */
-.services-dropdown li span:hover {
+.services-dropdown li a:hover {
     color: black;
     background-color: #f4f4f4;
 }
 
 nav .rightbtn .btn {
-  padding: 0.5rem 1rem;
-  background-color: transparent; /* no fill */
-  color: black; /* text + icon color */
-  border: 1px solid black; /* black border */
-  line-height: 2rem;
-  border-radius: 0.5rem;
-  text-decoration: none;
-  display: flex; /* align icon + text */
-  align-items: center;
-  gap: 0.5rem; /* spacing between icon and text */
-  font-weight: 500;
+    padding: 0.5rem 1rem;
+    background-color: transparent;
+    color: black;
+    border: 1px solid black;
+    line-height: 2rem;
+    border-radius: 0.5rem;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 500;
 }
 
 nav .rightbtn .btn:hover {
-  background-color: black;
-  color: white;
+    background-color: black;
+    color: white;
 }
 
 nav .rightbtn .btn .phone-icon {
-  transform: rotate(90deg); /* make the phone face right */
+    transform: rotate(90deg);
 }
 
 /* Responsive adjustments (no hamburger) */

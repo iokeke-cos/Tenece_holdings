@@ -9,6 +9,7 @@ import FAQ from "./components/pages/FAQ";
 import Pricing from "./components/pages/Pricing";
 import Blog from "./components/pages/Blog";
 import Footer from './components/Footer.jsx';
+import ServiceDetail from "./components/pages/ServiceDetail";
 import BlogPost from "./components/pages/BlogPost";
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/services" element={<Services />} />
+          <Route path="/services/:serviceId" element={<ServiceDetail />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/faq" element={<FAQ />} />
           <Route path="/pricing" element={<Pricing />} />
