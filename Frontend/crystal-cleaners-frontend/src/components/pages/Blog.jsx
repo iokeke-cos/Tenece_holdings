@@ -1,5 +1,7 @@
 import React from 'react';
-import './Blog.css'; // You'll create this CSS file next
+import { Link } from 'react-router-dom';
+import blogPosts from '../../blogData'; 
+import './Blog.css'; 
 
 export default function Blog() {
   const blogPosts = [
@@ -43,7 +45,7 @@ export default function Blog() {
               <h2>{post.title}</h2>
               <p className="post-excerpt">{post.excerpt}</p>
               <p className="post-date">Published on {post.date}</p>
-              <a href={`/blog/${post.id}`} className="read-more-link">Read More</a>
+              <Link to={`/blog/${post.id}`} className="read-more-link">Read More</Link>
             </article>
           ))}
         </div>
