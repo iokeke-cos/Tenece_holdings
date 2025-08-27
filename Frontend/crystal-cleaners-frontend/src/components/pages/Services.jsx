@@ -1,5 +1,8 @@
 import React from "react";
+import { Link } from 'react-router-dom';
+import allServices from '../../ServicesData';
 import "./Services.css";
+
 import OfficeCleaningImg from "../../assets/OfficeCleaningImg.png";
 import WindowCleaningImg from "../../assets/WindowCleaningImg.png";
 import CarpetCleaningImg from "../../assets/CarpetCleaningImg.png";
@@ -11,12 +14,12 @@ import KitchenCleaningImg from "../../assets/KitchenCleaningImg.png";
 const Services = () => {
   const services = [
     // Add a 'url' property to each service object
-    { title: "Office Cleaning", description: "Sample text. Click to select the text box.", image: OfficeCleaningImg, url: "/services/office-cleaning" },
-    { title: "Window Cleaning", description: "Sample text. Click to select the text box.", image: WindowCleaningImg, url: "/services/window-cleaning" },
-    { title: "Carpet Cleaning", description: "Sample text. Click to select the text box.", image: CarpetCleaningImg, url: "/services/carpet-cleaning" },
-    { title: "Bathroom Cleaning", description: "Sample text. Click to select the text box.",image: BathroomCleaningImg, url: "/services/bathroom-cleaning" },
-    { title: "Bedroom Cleaning", description: "Sample text. Click to select the text box.", image: BedroomCleaningImg, url: "/services/bedroom-cleaning" },
-    { title: "Kitchen Cleaning", description: "Sample text. Click to select the text box.", image: KitchenCleaningImg, url: "/services/kitchen-cleaning" },
+    {id: "office-cleaning", title: "Office Cleaning", description: "Sample text. Click to select the text box.", image: OfficeCleaningImg, url: "/services/office-cleaning" },
+    {id: "window-cleaning", title: "Window Cleaning", description: "Sample text. Click to select the text box.", image: WindowCleaningImg, url: "/services/window-cleaning" },
+    {id: "carpet-cleaning",title: "Carpet Cleaning", description: "Sample text. Click to select the text box.", image: CarpetCleaningImg, url: "/services/carpet-cleaning" },
+    {id: "bathroom-cleaning", title: "Bathroom Cleaning", description: "Sample text. Click to select the text box.",image: BathroomCleaningImg, url: "/services/bathroom-cleaning" },
+    {id: "bedroom-cleaning", title: "Bedroom Cleaning", description: "Sample text. Click to select the text box.", image: BedroomCleaningImg, url: "/services/bedroom-cleaning" },
+    {id: "kitchen-cleaning", title: "Kitchen Cleaning", description: "Sample text. Click to select the text box.", image: KitchenCleaningImg, url: "/services/kitchen-cleaning" },
   ];
 
   // Slice the first 3 and next 3 services for top and bottom rows
@@ -40,7 +43,9 @@ const Services = () => {
       <h3 className="service-title">{service.title}</h3>
       <p className="service-description">{service.description}</p>
       {/* Update the href to use the service's unique URL */}
-      <a href={service.url} className="service-link">More</a>
+      <Link to={`/services/${service.id}`} className="service-link">
+          More
+      </Link>
     </div>
   );
 

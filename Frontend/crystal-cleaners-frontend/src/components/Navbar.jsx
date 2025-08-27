@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import "./Navbar.css";
 import { NavLink, Link } from "react-router-dom";
 import { FaPhone, FaChevronDown } from "react-icons/fa";
+import allServices from "../ServicesData"; 
 
 export const Navbar = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -11,7 +12,6 @@ export const Navbar = () => {
     setIsDropdownOpen(!isDropdownOpen);
   };
 
-  // Close dropdown when clicking outside
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
@@ -58,24 +58,17 @@ export const Navbar = () => {
           </div>
           {isDropdownOpen && (
             <ul className="services-dropdown">
-              <li>
-                <span>Office Cleaning</span>
-              </li>
-              <li>
-                <span>Window Cleaning</span>
-              </li>
-              <li>
-                <span>Carpet Cleaning</span>
-              </li>
-              <li>
-                <span>Bathroom Cleaning</span>
-              </li>
-              <li>
-                <span>Bedroom Cleaning</span>
-              </li>
-              <li>
-                <span>Kitchen Cleaning</span>
-              </li>
+              
+              {allServices.map((service) => (
+                <li key={service.id}>
+                  <Link
+                    to={`/services/${service.id}`}
+                    onClick={() => setIsDropdownOpen(false)} 
+                  >
+                    {service.title}
+                  </Link>
+                </li>
+              ))}
             </ul>
           )}
         </li>
@@ -94,7 +87,7 @@ export const Navbar = () => {
       </ul>
 
       <div className="rightbtn">
-        <a href="" className="btn">
+        <a href="tel:000000000" className="btn">
           <FaPhone className="phone-icon" />
           (000) 000-000
         </a>
