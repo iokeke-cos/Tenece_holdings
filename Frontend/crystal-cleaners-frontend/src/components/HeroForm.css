@@ -1,7 +1,8 @@
 .hero-form-container {
   position: absolute;
-  top: 20px;
-  left: 55%; /* push it closer to image side */
+  position: fixed;
+  top: 350px;
+  left: 65%; /* push it closer to image side */
   transform: translateY(-50%);
   
   background: #fff;

@@ -1,8 +1,11 @@
 /* --- General Hero Section Layout --- */
 .hero {
+  position: relative;
   padding-top: 2rem;  
   background: #f9fafb; /* Light background for the overall section */
-  height: 60p;
+  min-height: 60vh;
+  position: relative; 
+  overflow: hidden;
 }
 
 .hero-container {
@@ -74,13 +77,13 @@
 }
 
 .hero-form-overlay {
-  position: absolute;
-  bottom: 40%; 
-  left: 50%;
+ position: absolute; 
+  top: -10%;                /* center vertically */
+  transform: translate(150%); 
   padding: 1.5rem;
   width: 80%;
   max-width: 400px;
-}
+  z-index: 5; }
 
 
 /* --- Responsive Adjustments --- */
