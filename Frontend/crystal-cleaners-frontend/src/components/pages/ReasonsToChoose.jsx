@@ -9,48 +9,47 @@ export default function ReasonsToChoose() {
 
     return(
         <>
-        <section className="choose-us">
+      <section className="choose-us">
         <div className="choose-us-component">
-        <div className="main-content">
-          <div className="choose-us-image">
-            <img
-              src={handVacuum}
-              alt="cleaner working"
-              style={{ width: "492px", height: "495px" }}
-            />
+          <div className="main-content">
+            <div className="choose-us-image">
+              <img
+                src={handVacuum}
+                alt="cleaner working"
+                style={{ width: "492px", height: "495px" }}
+              />
+            </div>
+            
+            <div className="choose-us-right-content">
+              <div className="choose-us-text">
+                <h1
+                  className="choose-us-heading"
+                  style={{ fontWeight: "800", fontSize: "48px" }}
+                >
+                  Reasons To Choose <br /> Crystal Cleaners, Today
+                </h1>
+                <br />
+                <p style={{ color: "#141414BF", fontSize: "18px" }}>
+                  Choose House Cleaning SF for exceptional cleaning services. <br />
+                  Contact us today to schedule your first cleaning session and
+                  <br />
+                  experience the difference.
+                </p>
+              </div>
+              
+              <div className="button-component">
+                <button>Book Your Home Clean</button>
+                <br /> <br />
+                <p className="choose-us-meta" style={{ color: "#141414BF", fontSize: "16px"}}>
+                  34 cleans booked in the last 24 hours
+                </p>
+              </div>
+            </div>
           </div>
-          <div className="choose-us-text">
-            <h1
-              className="choose-us-heading"
-              style={{ fontWeight: "800", fontSize: "48px" }}
-            >
-              Reasons To Choose <br /> Crystal Cleaners, Today
-            </h1>
-            <br />
-            <p style={{ color: "#141414BF", fontSize: "18px" }}>
-              Choose House Cleaning SF for exceptional cleaning services. <br />
-              Contact us today to schedule your first cleaning session and
-              <br />
-              experience the difference.
-            </p>
-          </div>
-
           
-        </div>
-        <div className="button-component">
-          <button>Book Your Home Clean</button>
-          <br /> <br />
-
-          <p className="choose-us-meta" style={{ color: "#141414BF", fontSize: "16px"}}> 
-            34 cleans booked in the last 24 hours
-          </p>
-
-
-        </div>
-        
-        <hr style={{ border: "1px solid" }} />
-
-        <div className="icons">
+          <hr style={{ border: "1px solid" }} />
+          {/* rest of your content */}
+          <div className="icons">
           <div className="hand-cleaning">
             <img src={handCleaning} alt="cleaning" /><br /><br />
             <p>Enjoy the same trusted cleaners,<br /> every time you book</p>
@@ -75,7 +74,17 @@ export default function ReasonsToChoose() {
             <p>100% secure online  <br />payments</p>
           </div>
         </div>
-      </div>
+        </div>
+
+
+
+
+
+
+
+
+        
+      
       </section>
 
 
