@@ -30,6 +30,7 @@ export default function ServiceDetail() {
         </div>
         <div className="service-detail-info">
           <h1 className="service-detail-heading">{service.title}</h1>
+          <p className="service-detail-brief">{service.brief}</p>
           <ul className="service-detail-bullet-points">
             {service.details.map((detail, index) => (
               <li key={index}>{detail}</li>

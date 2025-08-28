@@ -14,12 +14,12 @@ import KitchenCleaningImg from "../../assets/KitchenCleaningImg.png";
 const Services = () => {
   const services = [
     // Add a 'url' property to each service object
-    {id: "office-cleaning", title: "Office Cleaning", description: "Sample text. Click to select the text box.", image: OfficeCleaningImg, url: "/services/office-cleaning" },
-    {id: "window-cleaning", title: "Window Cleaning", description: "Sample text. Click to select the text box.", image: WindowCleaningImg, url: "/services/window-cleaning" },
-    {id: "carpet-cleaning",title: "Carpet Cleaning", description: "Sample text. Click to select the text box.", image: CarpetCleaningImg, url: "/services/carpet-cleaning" },
-    {id: "bathroom-cleaning", title: "Bathroom Cleaning", description: "Sample text. Click to select the text box.",image: BathroomCleaningImg, url: "/services/bathroom-cleaning" },
-    {id: "bedroom-cleaning", title: "Bedroom Cleaning", description: "Sample text. Click to select the text box.", image: BedroomCleaningImg, url: "/services/bedroom-cleaning" },
-    {id: "kitchen-cleaning", title: "Kitchen Cleaning", description: "Sample text. Click to select the text box.", image: KitchenCleaningImg, url: "/services/kitchen-cleaning" },
+    {id: "office-cleaning", title: "Office Cleaning", description: "Elevate your workspace with our professional cleaning services. We offer comprehensive dusting, sanitizing, and organization on a flexible schedule to ensure zero disruption to your business.", image: OfficeCleaningImg, url: "/services/office-cleaning" },
+    {id: "window-cleaning", title: "Window Cleaning", description: "Get sparkling, streak-free windows with our professional cleaning services. We use safe, specialized equipment to clean all window types, including hard-to-reach panes, leaving no drips or mess behind.", image: WindowCleaningImg, url: "/services/window-cleaning" },
+    {id: "carpet-cleaning",title: "Carpet Cleaning", description: "Our professional carpet cleaning service deeply cleans to remove stains, odors, and allergens. We use advanced techniques to revitalize your carpets, leaving them fresh and soft.", image: CarpetCleaningImg, url: "/services/carpet-cleaning" },
+    {id: "bathroom-cleaning", title: "Bathroom Cleaning", description: "Experience a new level of cleanliness with our professional bathroom sanitization. We provide a meticulous, top-to-bottom disinfection, leaving every detail sparkling and hygienically clean.",image: BathroomCleaningImg, url: "/services/bathroom-cleaning" },
+    {id: "bedroom-cleaning", title: "Bedroom Cleaning", description: "Transform your bedroom into a sanctuary with our professional cleaning services. We handle all dusting, vacuuming, and surface cleaning to create a fresh and peaceful space.", image: BedroomCleaningImg, url: "/services/bedroom-cleaning" },
+    {id: "kitchen-cleaning", title: "Kitchen Cleaning", description: "A truly clean and food-safe kitchen starts with professional care. We meticulously tackle grease, stains, and residues, ensuring a spotless and hygienic space for you to cook and enjoy.", image: KitchenCleaningImg, url: "/services/kitchen-cleaning" },
   ];
 
   // Slice the first 3 and next 3 services for top and bottom rows
