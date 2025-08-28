@@ -1,14 +1,18 @@
 .hero-form-container {
   position: absolute;
-  top: 55%;
+  top: 20px;
   left: 55%; /* push it closer to image side */
   transform: translateY(-50%);
+  
   background: #fff;
   border-radius: 12px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
   padding: 1.5rem;
   width: 95%;
   max-width: 300px;
+  z-index: 100;
+  
+
 }
 
 .form-header {

@@ -1,0 +1,168 @@
+.contact {
+  background-color: #F4F4F4;
+  
+}
+
+
+.contact-flex-container {
+  display: flex;
+  margin: 60px;
+  justify-content: center;
+  gap: 50px;
+ 
+  
+  
+  
+}
+
+
+
+.details-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  
+  
+}
+.text-part p {
+  line-height: 30px;
+}
+
+.email {
+  margin-top: 40px;
+}
+
+.address p {
+  line-height: 30px;
+}
+
+.button-part {
+  margin-top: 100px;
+
+}
+
+.button-part button {
+  padding: 1.3rem 1.5rem;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  border-radius: 10px;
+  font-size: 20px;
+  font-weight: 600;
+  background-color: #2937B1;
+}
+
+.button-part button:hover {
+  background-color: #202a87;
+}
+
+.text-part hr {
+  width: 450px;
+}
+
+
+
+
+
+
+
+
+
+
+
+/* .contact {
+  background-color: #F4F4F4;
+  margin: 0;
+  padding: 0;
+  
+}
+
+body {
+    overflow-x: hidden;
+}
+
+.contact {
+  padding: 2rem;
+  margin: 30px;
+}
+
+.contact-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  background-color: g;
+}
+
+.contact-info {
+  flex: 1;
+}
+
+.contact-map {
+  flex: 1;
+  
+}
+
+
+
+.contact-details {
+  margin: 1rem 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+
+  grid-row-gap: 40px ;
+  
+
+
+}
+
+
+
+
+
+
+
+.contact-button {
+  margin-top: 6rem;
+  position: relative;
+  bottom: 50px;
+}
+
+.contact-button button {
+  padding: 1.3rem 1.5rem;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  border-radius: 10px;
+  font-size: 20px;
+  font-weight: 600;
+  background-color: #2937B1;
+  
+
+
+  
+}
+
+.contact-button button:hover {
+    background-color: #202a87;
+}
+
+.note {
+  font-size: 0.8rem;
+  margin-top: 0.5rem;
+  color: gray;
+}
+
+hr {
+  position: relative;
+  right: 95px;
+  
+}
+
+.icon {
+  font-size: 1.2em;
+  position: relative;
+  top: 5px;
+
+}
+
+ */

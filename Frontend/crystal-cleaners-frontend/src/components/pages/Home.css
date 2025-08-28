@@ -1,0 +1,312 @@
+:root {
+    --bg-color-1: #FAE084;
+    --button-color: #2937B1;
+    --gray-color: #F4F4F4;
+    --regular-text: #141414BF;
+    --button-hover: #202a87;
+}
+
+html, body {
+    overflow-x: hidden;
+}
+
+
+.choose-us{
+    background-color: white;
+    padding: 60px;
+}
+
+.main-content{
+    display: flex;
+    justify-content: center;
+    gap:200px;      
+    
+}
+
+.main-content p{
+    line-height: 30px;
+}
+
+.choose-us button {
+    padding: 1.3rem 1.5rem;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  border-radius: 10px;
+  font-size: 18px;
+  font-weight: 600;
+  background-color: #2937B1;
+  width: 300px;
+transition: background-color 0.3s ease;
+   
+      
+    
+   
+
+  
+  
+}
+
+
+
+
+.choose-us-meta {
+    grid-column: 2;
+    
+} 
+
+.choose-us-component .button-component {
+    margin-left: 500px;
+    position: relative;
+    left: 200px;
+    bottom: 150px;
+
+}
+
+
+
+
+.choose-us button:hover {
+    background-color: #1d4ed8;
+}
+.choose-us hr {
+    width: 1200px;
+    margin-bottom: 70px;
+    position: relative;
+    right: 20px;
+    color: #1414142E;
+}
+
+.icons {
+    display: flex;
+    justify-content: space-evenly
+}
+
+.icons p {
+    font-size: 16px;
+    line-height: 30px;
+
+}
+
+
+
+/* CUSTOMER REVIEWS */
+
+
+
+.reviews {
+    background-color: var(--bg-color-1);
+    padding: 50px;
+}
+.reviews h2 {
+    text-align: center;
+    margin-bottom: 10px;
+}
+.reviews-container {
+    display: flex; 
+    justify-content: center;
+    gap: 10px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+
+    
+    
+    
+    
+
+}
+
+.reviews-container ::-webkit-scrollbar {
+    display: none;
+}
+
+
+
+
+
+.moskur, .tanvir, .nabil, .man1, .abir {
+    border: 1px solid;
+    border-radius: 10px;
+    width: 300px;
+    height: 490px;
+    background-color: white;
+    border: none;
+    flex: 0 0 auto;
+    scroll-snap-align: start;
+    
+    
+
+
+}
+
+.moskur p, .tanvir p, .nabil p, .man1 p, .abir p{
+    margin-left: 10px;
+    color: #141414;
+    font-size: 18px;
+}
+
+.moskur span, .tanvir span, .nabil span, .man1 span, .abir span{
+    margin-left: 10px;
+    font-size: 16px;
+}
+
+
+
+.nabil img, .tanvir img, .man1 img, .moskur img, .abir img {
+    width: 300px;
+    border-radius: 10px 10px 0 0;
+   
+}
+
+
+.arrow-right, .arrow-left{
+    width: 50px;
+    height: 50px;
+
+}
+
+.reviews-container button {
+    width: 30px;
+}
+
+.tanvir {
+    grid-column: 2;
+    
+}
+
+
+
+/* Blog component */
+
+.blog-content{
+    margin: 60px;
+   
+}
+
+.button-text {
+    display:flex;
+    justify-content: space-between;
+    margin-left: 80px;
+    margin-right: 80px
+
+
+
+}
+
+/* BLOG COMPONENT  */
+
+.our-blog button {
+padding: 1.3rem 1.5rem;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  border-radius: 10px;
+  font-size: 20px;
+  font-weight: 600;
+  background-color: #2937B1;
+transition: background-color 0.3s ease;
+  
+  
+}
+
+.our-blog button:hover {
+    background-color: #1d4ed8;
+}
+
+.blog-cards {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.content1, .content-2, .content-3 {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    margin-top: 10px;
+}
+
+.blog-content h4{
+    margin-bottom: 30px;
+    line-height: 32px;
+}
+
+
+/* GUARANTEE SECTION  */
+
+.guarantee-section {
+    display: flex;
+    justify-content: space-evenly;
+    background-color: var(--bg-color-1);
+    padding: 50px;
+
+}
+
+
+
+.guarantee-section .image{
+    width: 456px;
+    height: 436px;
+}
+
+.guarantee-section button {
+    padding: 1.3rem 1.5rem;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  border-radius: 10px;
+  font-size: 20px;
+  font-weight: 600;
+  background-color: var(--button-color);
+  transition: background-color 0.3s ease;
+}
+
+.guarantee-section button:hover {
+    background-color: #1d4ed8;
+}
+
+.guarantee-section .text p{
+    color: var(--regular-text);
+    line-height: 30px;
+}
+
+/* EXPERIENCE TOP QUALITY */
+
+.top-quality {
+    background-image: url(../../assets/bg-bg-1.png);
+    padding: 70px
+}
+
+.top-quality-flex-container {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    
+}
+
+.quality-container h2 {
+    text-align: center;
+}
+
+.quality-container .last-part {
+    margin-left: 540px;
+    margin-top: 20px;
+    
+}
+
+.quality-container button {
+    padding: 1.3rem 1.5rem;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  border-radius: 10px;
+  font-size: 20px;
+  font-weight: 600;
+  background-color: #2937B1;
+  transition: background-color 0.3s ease;
+}
+
+.quality-container button:hover {
+      background-color: #1d4ed8;
+}
+
+
