@@ -7,6 +7,7 @@
   font-family: "Wix Madefor Display", sans-serif; /* Consistent font */
   color: white; /* Dark text color */
   overflow: hidden;
+   min-height: 400px; 
 }
 
 .clients-container {
@@ -35,7 +36,6 @@
   justify-content: center; /* Center logos horizontally */
   gap: 3.5rem; /* Space between logos */
   margin-top: 2rem;
-  animation: slideLogos 30s linear infinite; /* Apply the animation */
   justify-content: flex-start;
   
 }

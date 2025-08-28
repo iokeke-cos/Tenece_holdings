@@ -3,9 +3,9 @@ import { useRef, useState, useEffect } from "react";
 import leftArrow from "../../assets/arrow-left.png";
 import rightArrow from "../../assets/arrow-right.png";
 import man1 from "../../assets/man 1.jpg";
-import moskur from "../../assets/moskur.png";
+import moskur from "../../assets/Moskur.png";
 import tanvir from "../../assets/tanvir.png";
-import nabil from "../../assets/nabil.jpg";
+import nabil from "../../assets/Nabil.jpg";
 import abir from "../../assets/abir.jpg";
 import "./CustomerReviews.css";
 
