@@ -1,27 +1,18 @@
-import express from "express";
-import dotenv from "dotenv";
-import cors from "cors";
-import morgan from "morgan";
-import connectDB from "./config/db.js";
-import serviceRoutes from './routes/service.routes.js';
+import express from 'express';
+import Booking from '../models/booking.model.js';
 
-dotenv.config();
-const app = express();
 
-// Middleware
-app.use(express.json());
-app.use(cors());
-app.use(morgan("dev"));
+const router = express.Router();
 
-app.use("/api/services", serviceRoutes);
 
-// Connect DB and start server
-const PORT = process.env.PORT || 5000;
-
-connectDB().then(() => {
-  app.listen(PORT, () => {
-    console.log(`🚀 Server running on http://localhost:${PORT}`);
-  });
+router.post('/', async (req, res) => {
+  try {
+    const {category} = req.query;
+    const bokings = category ? await Booking.find({category}) : await Booking.find();
+    res.json(bokings);
+  } catch (error) {
+    res.status(500).json({message: 'Server Error', error: error.message});
+  }
 });
 
 
@@ -74,3 +65,5 @@ app.post("/bookings", (req, res) => {
   });
 });
 
+
+export default router;
