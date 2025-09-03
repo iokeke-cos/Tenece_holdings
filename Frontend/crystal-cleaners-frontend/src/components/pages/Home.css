@@ -6,7 +6,8 @@
     --button-hover: #202a87;
 }
 
-html, body {
+html,
+body {
     overflow-x: hidden;
 }
 
@@ -19,15 +20,17 @@ html, body {
 .main-content {
     display: flex;
     justify-content: center;
-    gap: 200px;
-    align-items: flex-start;
+    gap: 90px;
+    align-items: center;
+    margin: 0 auto;
 }
 
 .choose-us-right-content {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    height: 495px; /* Match the image height */
+    justify-content: flex-start;
+    height: auto;
+    /* Match the image height */
 }
 
 .choose-us-text {
@@ -35,7 +38,7 @@ html, body {
 }
 
 .button-component {
-    margin-top: auto; /* This pushes the button to the bottom */
+    margin-top: 20px;
 }
 
 /* Remove the problematic positioning */
@@ -73,7 +76,13 @@ html, body {
 
 .icons {
     display: flex;
-    justify-content: space-evenly
+    justify-content: space-around;
+    /* keeps even spacing */
+    max-width: 1000px;
+    /* reduce width of the whole row */
+    margin: 0 auto;
+    /* center the row */
+    gap: 40px;
 }
 
 .icons p {
@@ -92,21 +101,23 @@ html, body {
     background-color: var(--bg-color-1);
     padding: 50px;
 }
+
 .reviews h2 {
     text-align: center;
     margin-bottom: 10px;
 }
+
 .reviews-container {
-    display: flex; 
+    display: flex;
     justify-content: center;
     gap: 10px;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
 
-    
-    
-    
-    
+
+
+
+
 
 }
 
@@ -118,7 +129,11 @@ html, body {
 
 
 
-.moskur, .tanvir, .nabil, .man1, .abir {
+.moskur,
+.tanvir,
+.nabil,
+.man1,
+.abir {
     border: 1px solid;
     border-radius: 10px;
     width: 300px;
@@ -127,33 +142,46 @@ html, body {
     border: none;
     flex: 0 0 auto;
     scroll-snap-align: start;
-    
-    
+
+
 
 
 }
 
-.moskur p, .tanvir p, .nabil p, .man1 p, .abir p{
+.moskur p,
+.tanvir p,
+.nabil p,
+.man1 p,
+.abir p {
     margin-left: 10px;
     color: #141414;
     font-size: 18px;
 }
 
-.moskur span, .tanvir span, .nabil span, .man1 span, .abir span{
+.moskur span,
+.tanvir span,
+.nabil span,
+.man1 span,
+.abir span {
     margin-left: 10px;
     font-size: 16px;
 }
 
 
 
-.nabil img, .tanvir img, .man1 img, .moskur img, .abir img {
+.nabil img,
+.tanvir img,
+.man1 img,
+.moskur img,
+.abir img {
     width: 300px;
     border-radius: 10px 10px 0 0;
-   
+
 }
 
 
-.arrow-right, .arrow-left{
+.arrow-right,
+.arrow-left {
     width: 50px;
     height: 50px;
 
@@ -165,61 +193,69 @@ html, body {
 
 .tanvir {
     grid-column: 2;
-    
+
 }
 
 
 
 /* Blog component */
 
-.blog-content{
+.blog-content {
     margin: 60px;
-   
+
 }
 
 .button-text {
-    display:flex;
+    display: flex;
     justify-content: space-between;
     margin-left: 80px;
     margin-right: 80px
-
-
-
 }
 
 /* BLOG COMPONENT  */
 
 .our-blog button {
-padding: 1.3rem 1.5rem;
-  color: #fff;
-  border: none;
-  cursor: pointer;
-  border-radius: 10px;
-  font-size: 20px;
-  font-weight: 600;
-  background-color: #2937B1;
-transition: background-color 0.3s ease;
-  
-  
+    padding: 1.3rem 1.5rem;
+    margin-left: 90px; /* adjust the px to move more */
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    border-radius: 10px;
+    font-size: 20px;
+    font-weight: 600;
+    background-color: #2937B1;
+    transition: background-color 0.3s ease;
+
+
 }
 
 .our-blog button:hover {
     background-color: #1d4ed8;
 }
 
+.button-text {
+  display: flex;
+  align-items: center; /* vertical alignment */
+  gap: 100px; /* optional spacing between text and button */
+  margin: 0 80px; /* optional horizontal spacing from edges */
+}
+
+
 .blog-cards {
     display: flex;
     justify-content: space-evenly;
 }
 
-.content1, .content-2, .content-3 {
+.content1,
+.content-2,
+.content-3 {
     display: flex;
     justify-content: space-between;
     margin-bottom: 20px;
     margin-top: 10px;
 }
 
-.blog-content h4{
+.blog-content h4 {
     margin-bottom: 30px;
     line-height: 32px;
 }
@@ -237,28 +273,28 @@ transition: background-color 0.3s ease;
 
 
 
-.guarantee-section .image{
+.guarantee-section .image {
     width: 456px;
     height: 436px;
 }
 
 .guarantee-section button {
     padding: 1.3rem 1.5rem;
-  color: #fff;
-  border: none;
-  cursor: pointer;
-  border-radius: 10px;
-  font-size: 20px;
-  font-weight: 600;
-  background-color: var(--button-color);
-  transition: background-color 0.3s ease;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    border-radius: 10px;
+    font-size: 20px;
+    font-weight: 600;
+    background-color: var(--button-color);
+    transition: background-color 0.3s ease;
 }
 
 .guarantee-section button:hover {
     background-color: #1d4ed8;
 }
 
-.guarantee-section .text p{
+.guarantee-section .text p {
     color: var(--regular-text);
     line-height: 30px;
 }
@@ -274,7 +310,7 @@ transition: background-color 0.3s ease;
     display: flex;
     justify-content: center;
     gap: 40px;
-    
+
 }
 
 .quality-container h2 {
@@ -282,25 +318,26 @@ transition: background-color 0.3s ease;
 }
 
 .quality-container .last-part {
-    margin-left: 540px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* centers the button + text */
     margin-top: 20px;
-    
+
 }
 
 .quality-container button {
     padding: 1.3rem 1.5rem;
-  color: #fff;
-  border: none;
-  cursor: pointer;
-  border-radius: 10px;
-  font-size: 20px;
-  font-weight: 600;
-  background-color: #2937B1;
-  transition: background-color 0.3s ease;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    border-radius: 10px;
+    font-size: 20px;
+    font-weight: 600;
+    background-color: #2937B1;
+    transition: background-color 0.3s ease;
 }
 
 .quality-container button:hover {
-      background-color: #1d4ed8;
+    background-color: #1d4ed8;
 }
-
-

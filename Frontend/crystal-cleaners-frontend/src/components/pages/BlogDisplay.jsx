@@ -14,7 +14,7 @@ export default function BlogDisplay () {
           <div className="button-text">
             <p style={{ fontSize: "48px", fontWeight: "700" }}>Our Blog</p>
             <Link to="/blog">
-            <button>View all Blog</button>
+            <button >View all Blog</button>
             </Link>
             
           </div>

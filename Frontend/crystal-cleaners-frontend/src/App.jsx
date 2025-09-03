@@ -6,7 +6,7 @@ import About from "./components/pages/About";
 import Services from "./components/pages/Services";
 import Contact from "./components/pages/Contact";
 import FAQ from "./components/pages/FAQ";
-import Pricing from "./components/pages/Pricing";
+import Booking from "./components/pages/Booking";
 import Blog from "./components/pages/Blog";
 import Footer from './components/Footer.jsx';
 import ServiceDetail from "./components/pages/ServiceDetail";
@@ -26,7 +26,7 @@ function App() {
           <Route path="/services/:serviceId" element={<ServiceDetail />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/faq" element={<FAQ />} />
-          <Route path="/pricing" element={<Pricing />} />
+          <Route path="/booking" element={<Booking />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/blog/:postId" element={<BlogPost />} />
           

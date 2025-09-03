@@ -51,8 +51,8 @@ footer .first-part {
   flex-direction: row; 
   align-items: center; 
   justify-content: space-between; 
-  width: 100%; /* Take full width of parent footer */
-  padding: 0 40px; 
+  padding: 0 40px;       /* padding creates spacing inside */
+  width: 100%;
   box-sizing: border-box;
   margin-bottom: 40px; 
 }

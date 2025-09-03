@@ -31,7 +31,6 @@ export default function HeroSection() {
         </div>
 
         <div className="hero-form-overlay">
-          <HeroForm />
         </div>
       </div>
     </section>

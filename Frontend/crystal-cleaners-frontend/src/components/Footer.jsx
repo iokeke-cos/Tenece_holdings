@@ -23,6 +23,7 @@ export default function Footer() {
   return (
     <>
       <footer>
+        <div className="footer-content">
         <div className="first-part">
           <Link to="/">
             {" "}
@@ -72,7 +73,7 @@ export default function Footer() {
               </li>
 
               <li>
-                <NavLink to="pricing">Pricing</NavLink>
+                <NavLink to="booking">Booking</NavLink>
               </li>
 
               <li>
@@ -105,6 +106,7 @@ export default function Footer() {
             <span className="privacy-policy">Privacy Policy</span> |
             <span className="cookies"> Cookies</span>
           </p>
+        </div>
         </div>
       </footer>
     </>
