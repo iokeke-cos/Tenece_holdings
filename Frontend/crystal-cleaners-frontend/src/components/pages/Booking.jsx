@@ -1,200 +1,180 @@
-import React, { useState } from "react";
-import { FaUser, FaEnvelope, FaPhone, FaMapMarkerAlt, FaRegCalendarAlt, FaRegClock, FaBroom, FaRegCommentDots } from "react-icons/fa";
+import React, { useState } from "react"; 
+import {
+  FaUser,
+  FaEnvelope,
+  FaPhone,
+  FaMapMarkerAlt,
+  FaRegCalendarAlt,
+  FaRegClock,
+  FaBroom,
+  FaRegCommentDots,
+} from "react-icons/fa";
 import "./Booking.css";
 
-
 const BookingForm = () => {
-  const [formData, setFormData] = useState({
-    firstName: "",
-    lastName: "",
-    email: "",
-    phone: "",
-    address: "",
-    date: "",
-    time: "",
-    serviceType: "",
-  });
+  const [submitted, setSubmitted] = useState(false);
+  const [showSuccess, setShowSuccess] = useState(false);
 
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    setSubmitted(true);
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
+    const form = event.target;
+
+    // Show browser validation popups and get overall validity
+    const isFormValid = form.reportValidity();
+
+    if (!isFormValid) {
+      // scroll to first invalid field for convenience
+      const firstInvalid = form.querySelector(":invalid");
+      if (firstInvalid) {
+        firstInvalid.scrollIntoView({ behavior: "smooth", block: "center" });
+        try {
+          firstInvalid.focus({ preventScroll: true });
+        } catch (err) {
+          firstInvalid.focus();
+        }
+      }
+      return; 
+    }
+
+    // collect form data into an object
+    const formData = new FormData(form);
+    const data = Object.fromEntries(formData.entries());
+
+    try {
+      // send data to backend
+      const response = await fetch("http://localhost:5000", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to send booking data");
+      }
+
+      // show success, reset form
+      setShowSuccess(true);
+      form.reset();
+      setSubmitted(false);
+
+      // hide success message after a few seconds
+      setTimeout(() => setShowSuccess(false), 4000);
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      alert("Something went wrong. Please try again later.");
+    }
   };
-
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("Form Submitted:", formData);
-    alert("Booking submitted successfully!");
-    setFormData({
-      firstName: "",
-      lastName: "",
-      email: "",
-      phone: "",
-      address: "",
-      date: "",
-      time: "",
-      serviceType: "",
-      message: "",
-    });
-  };
-
 
   return (
     <div className="booking-form-container">
       <h2 className="form-title">Cleaning Service Booking Form</h2>
-      <form className="booking-form" onSubmit={handleSubmit}>
 
-
-        {/* 1. Full name */}
+      <form
+        className={`booking-form ${submitted ? "submitted" : ""}`}
+        onSubmit={handleSubmit}
+      >
+        {/* Full Name */}
         <div className="form-group">
           <label>1. Full name</label>
-          <div className="input-group-grid">
-            <div className="input-with-icon">
-              <FaUser className="input-icon" />
-              <input
-                type="text"
-                name="firstName"
-                placeholder="Enter your first name"
-                className="form-input"
-                value={formData.firstName}
-                onChange={handleChange}
-                required
-              />
-            </div>
-            <div className="input-with-icon">
-              <input
-                type="text"
-                name="lastName"
-                placeholder="Enter your last name"
-                className="form-input"
-                value={formData.lastName}
-                onChange={handleChange}
-                required
-              />
-            </div>
+          <div className="input-with-icon">
+            <FaUser className="input-icon" />
+            <input
+              type="text"
+              name="firstName"
+              placeholder="Enter your first name"
+              className="form-input"
+              required
+            />
           </div>
         </div>
 
-
-        {/* 2. Email */}
+        {/* Email */}
         <div className="form-group">
-          <label>2. Email address</label>
+          <label>2. Email</label>
           <div className="input-with-icon">
             <FaEnvelope className="input-icon" />
             <input
               type="email"
               name="email"
               placeholder="Enter your email"
-              className="form-input-full"
-              value={formData.email}
-              onChange={handleChange}
+              className="form-input"
               required
             />
           </div>
         </div>
 
-
-        {/* 3. Phone */}
+        {/* Phone */}
         <div className="form-group">
-          <label>3. Phone number</label>
+          <label>3. Phone Number</label>
           <div className="input-with-icon">
             <FaPhone className="input-icon" />
             <input
               type="tel"
               name="phone"
               placeholder="Enter your phone number"
-              className="form-input-full"
-              value={formData.phone}
-              onChange={handleChange}
-              pattern="[0-9]{10,15}" // Only allows 10–15 digits
-              title="Phone number should contain only digits"
+              className="form-input"
+              pattern="[0-9]{10,15}"
+              title="Phone number should contain only digits (10–15 numbers)"
               required
             />
           </div>
         </div>
 
-
-        {/* 4. Address */}
+        {/* Address */}
         <div className="form-group">
-          <label>4. Service address</label>
+          <label>4. Address</label>
           <div className="input-with-icon">
             <FaMapMarkerAlt className="input-icon" />
             <input
               type="text"
               name="address"
-              placeholder="Enter your service address"
-              className="form-input-full"
-              value={formData.address}
-              onChange={handleChange}
+              placeholder="Enter your address"
+              className="form-input"
               required
             />
           </div>
         </div>
 
-
-        {/* 5. Date */}
+        {/* Date */}
         <div className="form-group">
           <label>5. Preferred date</label>
           <div className="input-with-icon">
             <FaRegCalendarAlt className="input-icon" />
-            <input
-              type="date"
-              name="date"
-              className="form-input-full"
-              value={formData.date}
-              onChange={handleChange}
-              required
-            />
+            <input type="date" name="date" className="form-input-full" required />
           </div>
         </div>
 
-
-        {/* 6. Time */}
+        {/* Time */}
         <div className="form-group">
           <label>6. Preferred time</label>
           <div className="input-with-icon">
             <FaRegClock className="input-icon" />
-            <input
-              type="time"
-              name="time"
-              className="form-input-full"
-              value={formData.time}
-              onChange={handleChange}
-              required
-            />
+            <input type="time" name="time" className="form-input-full" required />
           </div>
         </div>
 
-
-        {/* 7. Service type */}
+        {/* Service type */}
         <div className="form-group">
           <label>7. Type of cleaning service</label>
           <div className="input-with-icon">
             <FaBroom className="input-icon" />
-            <select
-              name="serviceType"
-              className="form-input-full"
-              value={formData.serviceType}
-              onChange={handleChange}
-              required
-            >
+            <select name="serviceType" className="form-input-full" required>
               <option value="">Please select a service</option>
-              <option value="house">Office Cleaning</option>
-              <option value="office">Window Cleaning</option>
-              <option value="deep">Carpet Cleaning</option>
-              <option value="deep">Bedroom Cleaning</option>
-              <option value="deep">Bathroom Cleaning</option>
-              <option value="deep">Kitchen Cleaning</option>
+              <option value="office">Office Cleaning</option>
+              <option value="window">Window Cleaning</option>
+              <option value="carpet">Carpet Cleaning</option>
+              <option value="bedroom">Bedroom Cleaning</option>
+              <option value="bathroom">Bathroom Cleaning</option>
+              <option value="kitchen">Kitchen Cleaning</option>
             </select>
           </div>
         </div>
 
-
-        {/* 8. Special Message */}
+        {/* Special Message */}
         <div className="form-group">
           <label>8. Special requests / Message</label>
           <div className="input-with-icon">
@@ -203,21 +183,24 @@ const BookingForm = () => {
               name="message"
               placeholder="Enter any special instructions or requests"
               className="form-input-full"
-              value={formData.message}
-              onChange={handleChange}
               rows="4"
             />
           </div>
         </div>
 
-
         <button type="submit" className="submit-button">
           Submit
         </button>
       </form>
+
+      {/* Success message */}
+      {showSuccess && (
+        <p className="response-msg">
+          ✅ Your booking has been sent! We'll contact you soon.
+        </p>
+      )}
     </div>
   );
 };
-
 
 export default BookingForm;
