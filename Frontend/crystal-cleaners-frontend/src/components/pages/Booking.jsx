@@ -44,7 +44,7 @@ const BookingForm = () => {
 
     try {
       // send data to backend
-      const response = await fetch("http://localhost:5000", {
+      const response = await fetch("http://localhost:5000/api/bookings", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -53,7 +53,8 @@ const BookingForm = () => {
       });
 
       if (!response.ok) {
-        throw new Error("Failed to send booking data");
+        const errMsg = await response.text()
+        throw new Error(errMsg || "Failed to send booking data");
       }
 
       // show success, reset form
@@ -84,8 +85,8 @@ const BookingForm = () => {
             <FaUser className="input-icon" />
             <input
               type="text"
-              name="firstName"
-              placeholder="Enter your first name"
+              name="name"
+              placeholder="Enter your full name"
               className="form-input"
               required
             />
@@ -164,12 +165,12 @@ const BookingForm = () => {
             <FaBroom className="input-icon" />
             <select name="serviceType" className="form-input-full" required>
               <option value="">Please select a service</option>
-              <option value="office">Office Cleaning</option>
-              <option value="window">Window Cleaning</option>
-              <option value="carpet">Carpet Cleaning</option>
-              <option value="bedroom">Bedroom Cleaning</option>
-              <option value="bathroom">Bathroom Cleaning</option>
-              <option value="kitchen">Kitchen Cleaning</option>
+              <option value="Office Cleaning">Office Cleaning</option>
+              <option value="Window Cleaning">Window Cleaning</option>
+              <option value="Carpet Cleaning">Carpet Cleaning</option>
+              <option value="Bedroom Cleaning">Bedroom Cleaning</option>
+              <option value="Bathroom Cleaning">Bathroom Cleaning</option>
+              <option value="Kitchen Cleaning">Kitchen Cleaning</option>
             </select>
           </div>
         </div>

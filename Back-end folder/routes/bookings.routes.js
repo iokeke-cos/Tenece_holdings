@@ -1,69 +1,54 @@
 import express from 'express';
 import Booking from '../models/booking.model.js';
 
-
 const router = express.Router();
-
 
 router.post('/', async (req, res) => {
   try {
-    const {category} = req.query;
-    const bokings = category ? await Booking.find({category}) : await Booking.find();
-    res.json(bokings);
-  } catch (error) {
-    res.status(500).json({message: 'Server Error', error: error.message});
-  }
-});
+    const {serviceType, name, email, phone, address, date, time, message} = req.body;
 
+    if (!serviceType || !name || !email || !date || !time) {
+      return res.status(400).json({message: 'Required fields missing'});
+    }
 
+    const bookingDate = new Date(`${date}T${time}`);
 
-// Store bookings in-memory (for now, later you can save to DB)
-let bookings = [];
-
-// POST /bookings endpoint
-app.post("/bookings", (req, res) => {
-  const {
-    firstName,
-    lastName,
-    email,
-    phone,
-    serviceAddress,
-    preferredDate,
-    preferredTime,
-    serviceType,
-    specialRequests,
-  } = req.body;
-
-  // Basic validation
-  if (!firstName || !lastName || !email || !phone || !serviceAddress) {
-    return res.status(400).json({
-      success: false,
-      message: "Please fill in all required fields.",
+    const booking = new Booking({
+      serviceType,
+      customerName: name,
+      customerEmail: email,
+      phoneNumber: phone,
+      address,
+      bookingDate,
+      message,
     });
+
+    const savedBooking = await booking.save();
+    res.status(201).json(savedBooking);
+  } catch (error) {
+    res.status(500).json({message: 'Error creating booking', error: error.message});
   }
-
-  const newBooking = {
-    id: bookings.length + 1,
-    firstName,
-    lastName,
-    email,
-    phone,
-    serviceAddress,
-    preferredDate,
-    preferredTime,
-    serviceType,
-    specialRequests,
-    createdAt: new Date(),
-  };
-
-  bookings.push(newBooking);
-
-  res.status(201).json({
-    success: true,
-    message: "Booking received successfully!",
-    booking: newBooking,
-  });
 });
 
+router.get('/', async (req, res) => {
+  try {
+    const bookings = await Booking.find().sort({createdAt: -1});
+    res.json(bookings);
+  } catch (error) {
+    res.status(500).json({message: 'Error fetching bookings', error: error.message});
+  }
+});
+
+router.get('/:id', async (req, res) => {
+  try {
+    const booking = await Booking.findById(req.params.id);
+    if (!booking) {
+      return res.status(404).json({message: 'Booking not found'});
+    }
+    res.json(booking);
+  } catch (error) {
+    res.status(500).json({message: 'Error fetching booking', error: error.message});
+  }
+});
 
 export default router;
