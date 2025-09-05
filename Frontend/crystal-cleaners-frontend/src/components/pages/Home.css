@@ -11,7 +11,7 @@
 
 .choose-us {
     background-color: white;
-    padding: 60px;
+    padding: 60px 20px; /* Add horizontal padding for mobile */
 }
 
 .main-content {
@@ -20,6 +20,7 @@
     gap: 90px;
     align-items: center;
     margin: 0 auto;
+    max-width: 1200px; /* Add max-width for large screens */
 }
 
 .choose-us-right-content {
@@ -27,7 +28,7 @@
     flex-direction: column;
     justify-content: flex-start;
     height: auto;
-    /* Match the image height */
+    flex: 1; /* Allow it to grow/shrink */
 }
 
 .choose-us-text {
@@ -38,14 +39,6 @@
     margin-top: 20px;
 }
 
-/* Remove the problematic positioning */
-/* .choose-us-component .button-component {
-    margin-left: 500px;
-    position: relative;
-    left: 200px;
-    bottom: 150px;
-} */
-
 .choose-us button {
     padding: 1.3rem 1.5rem;
     color: #fff;
@@ -55,7 +48,8 @@
     font-size: 18px;
     font-weight: 600;
     background-color: #2937B1;
-    width: 300px;
+    width: 100%; /* Make button flexible */
+    max-width: 300px; /* But limit maximum width */
     transition: background-color 0.3s ease;
 }
 
@@ -64,30 +58,97 @@
 }
 
 .choose-us hr {
-    width: 1200px;
-    margin: 50px 0 70px -20px;
+    width: 100%; /* Make hr flexible */
+    max-width: 1200px; /* Limit maximum width */
+    margin: 50px auto 70px; /* Center the hr */
     color: #1414142E;
 }
-
-/* Rest of your CSS remains the same */
 
 .icons {
     display: flex;
     justify-content: space-around;
-    /* keeps even spacing */
     max-width: 1000px;
-    /* reduce width of the whole row */
     margin: 0 auto;
-    /* center the row */
     gap: 40px;
+    flex-wrap: wrap; /* Allow wrapping on small screens */
 }
 
 .icons p {
     font-size: 16px;
     line-height: 30px;
-
 }
 
+/* Tablet styles (768px and below) */
+@media (max-width: 768px) {
+    .choose-us {
+        padding: 40px 15px;
+    }
+    
+    .main-content {
+        flex-direction: column; /* Stack vertically on tablets */
+        gap: 40px;
+        text-align: center;
+    }
+    
+    .choose-us button {
+        font-size: 16px;
+        padding: 1rem 1.2rem;
+        max-width: 250px;
+    }
+    
+    .icons {
+        gap: 20px;
+        max-width: 100%;
+    }
+    
+    .choose-us hr {
+        margin: 30px auto 50px;
+    }
+}
+
+/* Mobile styles (480px and below) */
+@media (max-width: 480px) {
+    .choose-us {
+        padding: 20px 10px;
+    }
+    
+    .main-content {
+        gap: 30px;
+    }
+    
+    .choose-us button {
+        font-size: 14px;
+        padding: 0.8rem 1rem;
+        max-width: 200px;
+    }
+    
+    .icons {
+        flex-direction: column; /* Stack icons vertically on mobile */
+        align-items: center;
+        gap: 15px;
+    }
+    
+    .icons p {
+        font-size: 14px;
+        line-height: 24px;
+        text-align: center;
+    }
+    
+    .choose-us hr {
+        margin: 20px auto 30px;
+    }
+}
+
+/* Large screens (1200px and above) */
+@media (min-width: 1200px) {
+    .choose-us {
+        padding: 80px 60px;
+    }
+    
+    .main-content {
+        gap: 120px;
+    }
+}
 
 
 /* CUSTOMER REVIEWS */
@@ -196,26 +257,25 @@
 
 
 /* Blog component */
-
 .blog-content {
-    margin: 60px;
-
+    margin: 60px 20px; /* Add horizontal padding for mobile */
+    max-width: 1200px; /* Limit maximum width */
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .button-text {
     display: flex;
     justify-content: space-between;
-    margin-left: 80px;
-    margin-right: 80px
+    align-items: center;
+    margin: 0 20px; /* Reduce margins for mobile */
+    flex-wrap: wrap; /* Allow wrapping on small screens */
+    gap: 20px; /* Add gap for when items wrap */
 }
 
-/* BLOG COMPONENT  */
-
+/* BLOG COMPONENT */
 .our-blog button {
-    margin-left: auto;
-    margin-right: -95px;
     padding: 1.3rem 1.5rem;
-    margin-left: 90px; /* adjust the px to move more */
     color: #fff;
     border: none;
     cursor: pointer;
@@ -224,26 +284,20 @@
     font-weight: 600;
     background-color: #2937B1;
     transition: background-color 0.3s ease;
-
-
+    white-space: nowrap; /* Prevent button text from wrapping */
+    min-width: fit-content; /* Ensure button doesn't get too small */
 }
 
 .our-blog button:hover {
     background-color: #1d4ed8;
 }
 
-.button-text {
-  display: flex;
-  align-items: center; /* vertical alignment */
-  gap: 100px; /* optional spacing between text and button */
-  margin: 0 80px; /* optional horizontal spacing from edges */
-}
-
-
 .blog-cards {
     display: flex;
-    gap: 20px; /* controls space between the cards */
-    justify-content: center; /* keeps cards centered as a group */
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap; /* Allow cards to wrap on smaller screens */
+    margin: 40px 0;
 }
 
 .content1,
@@ -253,11 +307,122 @@
     justify-content: space-between;
     margin-bottom: 20px;
     margin-top: 10px;
+    flex: 1; /* Make cards flexible */
+    min-width: 280px; /* Minimum width before wrapping */
+    max-width: 400px; /* Maximum width for readability */
 }
 
 .blog-content h4 {
     margin-bottom: 30px;
     line-height: 32px;
+}
+
+/* Tablet styles (768px and below) */
+@media (max-width: 768px) {
+    .blog-content {
+        margin: 40px 15px;
+    }
+    
+    .button-text {
+        flex-direction: column; /* Stack title and button vertically */
+        align-items: center;
+        text-align: center;
+        gap: 20px;
+        margin: 0 15px;
+    }
+    
+    .our-blog button {
+        font-size: 18px;
+        padding: 1rem 1.2rem;
+        width: 100%;
+        max-width: 250px;
+    }
+    
+    .blog-cards {
+        flex-direction: column; /* Stack cards vertically on tablet */
+        align-items: center;
+        gap: 30px;
+    }
+    
+    .content1,
+    .content-2,
+    .content-3 {
+        max-width: 100%;
+        min-width: auto;
+    }
+    
+    .blog-content h4 {
+        margin-bottom: 20px;
+        line-height: 28px;
+        text-align: center;
+    }
+}
+
+/* Mobile styles (480px and below) */
+@media (max-width: 480px) {
+    .blog-content {
+        margin: 20px 10px;
+    }
+    
+    .button-text {
+        margin: 0 10px;
+    }
+    
+    .our-blog button {
+        font-size: 16px;
+        padding: 0.8rem 1rem;
+        max-width: 200px;
+    }
+    
+    .blog-cards {
+        gap: 20px;
+    }
+    
+    .content1,
+    .content-2,
+    .content-3 {
+        flex-direction: column; /* Stack content within each card */
+        margin-bottom: 15px;
+        margin-top: 5px;
+    }
+    
+    .blog-content h4 {
+        margin-bottom: 15px;
+        line-height: 24px;
+        font-size: 18px;
+    }
+}
+
+/* Large screens (1200px and above) */
+@media (min-width: 1200px) {
+    .blog-content {
+        margin: 80px auto;
+    }
+    
+    .button-text {
+        margin: 0 40px;
+    }
+    
+    .blog-cards {
+        gap: 40px;
+    }
+}
+
+/* Extra small screens (320px and below) */
+@media (max-width: 320px) {
+    .blog-content {
+        margin: 15px 5px;
+    }
+    
+    .our-blog button {
+        font-size: 14px;
+        padding: 0.7rem 0.8rem;
+    }
+    
+    .blog-content h4 {
+        font-size: 16px;
+        line-height: 22px;
+    }
 }
 
 
@@ -266,16 +431,30 @@
 .guarantee-section {
     display: flex;
     justify-content: space-evenly;
+    align-items: center; /* Add vertical alignment */
     background-color: var(--bg-color-1);
-    padding: 50px;
-
+    padding: 50px 20px; /* Add horizontal padding for mobile */
+    gap: 30px; /* Add gap for better spacing */
+    max-width: 3000px; /* Limit maximum width */
+    margin: 0 auto; /* Center the section */
 }
 
-
-
 .guarantee-section .image {
-    width: 456px;
-    height: 436px;
+    width: 100%; /* Make image flexible */
+    max-width: 456px; /* Limit maximum size */
+    height: auto; /* Maintain aspect ratio */
+    flex-shrink: 0; /* Prevent image from shrinking too much */
+}
+
+.guarantee-section .image img {
+    width: 100%;
+    height: auto;
+    object-fit: cover; /* Ensure proper image scaling */
+}
+
+.guarantee-section .text {
+    flex: 1; /* Allow text section to grow/shrink */
+    max-width: 600px; /* Limit text width for readability */
 }
 
 .guarantee-section button {
@@ -288,6 +467,9 @@
     font-weight: 600;
     background-color: var(--button-color);
     transition: background-color 0.3s ease;
+    width: 100%; /* Make button flexible */
+    max-width: 300px; /* Limit button width */
+    margin-top: 20px; /* Add spacing above button */
 }
 
 .guarantee-section button:hover {
@@ -297,6 +479,99 @@
 .guarantee-section .text p {
     color: var(--regular-text);
     line-height: 30px;
+    margin-bottom: 20px; /* Add spacing between paragraphs */
+}
+
+/* Tablet styles (768px and below) */
+@media (max-width: 768px) {
+    .guarantee-section {
+        flex-direction: column; /* Stack vertically on tablets */
+        text-align: center;
+        padding: 40px 15px;
+        gap: 40px;
+    }
+    
+    .guarantee-section .image {
+        max-width: 350px;
+        order: -1; /* Put image first on mobile if needed */
+    }
+    
+    .guarantee-section button {
+        font-size: 18px;
+        padding: 1rem 1.2rem;
+        max-width: 200px;
+        margin: 20px auto 0; /* Center button */
+    }
+    
+    .guarantee-section .text p {
+        line-height: 26px;
+        font-size: 16px;
+    }
+}
+
+/* Mobile styles (480px and below) */
+@media (max-width: 480px) {
+    .guarantee-section {
+        padding: 30px 10px;
+        gap: 30px;
+    }
+    
+    .guarantee-section .image {
+        max-width: 280px;
+    }
+    
+    .guarantee-section button {
+        font-size: 16px;
+        padding: 0.8rem 1rem;
+        max-width: 180px;
+    }
+    
+    .guarantee-section .text p {
+        line-height: 24px;
+        font-size: 14px;
+        margin-bottom: 15px;
+    }
+}
+
+/* Large screens (1200px and above) */
+@media (min-width: 1200px) {
+    .guarantee-section {
+        padding: 80px 60px;
+        gap: 60px;
+    }
+    
+    .guarantee-section .image {
+        max-width: 500px;
+    }
+    
+    .guarantee-section button {
+        font-size: 22px;
+        padding: 1.4rem 1.6rem;
+        max-width: 300px;
+    }
+}
+
+/* Extra small screens (320px and below) */
+@media (max-width: 320px) {
+    .guarantee-section {
+        padding: 20px 8px;
+        gap: 20px;
+    }
+    
+    .guarantee-section .image {
+        max-width: 240px;
+    }
+    
+    .guarantee-section button {
+        font-size: 14px;
+        padding: 0.7rem 0.8rem;
+        max-width: 160px;
+    }
+    
+    .guarantee-section .text p {
+        font-size: 13px;
+        line-height: 20px;
+    }
 }
 
 /* EXPERIENCE TOP QUALITY */
