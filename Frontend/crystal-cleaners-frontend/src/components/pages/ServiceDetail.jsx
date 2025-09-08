@@ -1,5 +1,3 @@
-// src/components/pages/ServiceDetail.jsx
-
 import React from 'react';
 import { useParams, Link } from 'react-router-dom';
 import allServices from '../../ServicesData';
@@ -9,7 +7,7 @@ export default function ServiceDetail() {
   const { serviceId } = useParams();
 
   console.log("Service ID from URL:", serviceId);
-  
+
   const service = allServices.find(s => s.id === serviceId);
 
   if (!service) {
@@ -21,6 +19,11 @@ export default function ServiceDetail() {
       </div>
     );
   }
+  // Format the price using the Nigerian Naira currency
+  const formattedPrice = new Intl.NumberFormat('en-NG', {
+    style: 'currency',
+    currency: 'NGN'
+  }).format(service.price);
 
   return (
     <div className="service-detail-page">
@@ -30,6 +33,9 @@ export default function ServiceDetail() {
         </div>
         <div className="service-detail-info">
           <h1 className="service-detail-heading">{service.title}</h1>
+          <h3 className="service-detail-price">
+            At : {formattedPrice}
+          </h3>
           <p className="service-detail-brief">{service.brief}</p>
           <ul className="service-detail-bullet-points">
             {service.details.map((detail, index) => (

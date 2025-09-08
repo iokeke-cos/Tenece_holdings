@@ -11,6 +11,7 @@ const allServices = [
   {
     id: "office-cleaning",
     title: "Office Cleaning",
+    price: 200000,
     brief: "A clean office is more than appearances—it is about productivity, safety, and client impressions. Our team uses professional-grade microfiber cloths and HEPA-filter vacuums to capture dust without spreading it. We pay close attention to the details.",
     mainImage: OfficeCleaningImg,
     details: [
@@ -29,6 +30,7 @@ const allServices = [
   {
     id: "window-cleaning",
     title: "Window Cleaning",
+    price: 80000,
     brief: "Our window cleaning service guarantees streak-free shine every time. Using eco-friendly glass solutions, squeegees, and extension poles, we handle everything from ground-level panes to high and hard-to-reach windows.",
     mainImage: WindowCleaningImg,
   details: [
@@ -46,6 +48,7 @@ const allServices = [
 {
   id: "carpet-cleaning",
     title: "Carpet Cleaning",
+    price: 40000,
     brief:"Carpets trap dust, allergens, and stains — but we go deeper than surface cleaning. With steam cleaners, stain removers, and deodorizing treatments, we restore your carpets to freshness.",
       mainImage: CarpetCleaningImg,
         details: [
@@ -63,6 +66,7 @@ const allServices = [
 {
   id: "bathroom-cleaning",
     title: "Bathroom Cleaning",
+    price: 30000,
     brief:"Bathrooms demand more than “just cleaning” — they require true sanitization. Our team uses safe but powerful disinfectants to eliminate germs and odors. ",
       mainImage: BathroomCleaningImg,
         details: [
@@ -81,6 +85,7 @@ const allServices = [
 {
   id: "bedroom-cleaning",
     title: "Bedroom Cleaning",
+    price: 25000,
     brief:"Your bedroom should be your comfort zone — fresh, neat, and relaxing. We take extra care with personal items and use anti-dust microfiber cloths and allergy-friendly vacuums for a healthier space.",
       mainImage: BedroomCleaningImg,
         details: [
@@ -98,6 +103,7 @@ const allServices = [
 {
   id: "kitchen-cleaning",
     title: "Kitchen Cleaning",
+    price: 35000,
     brief:"The kitchen is the heart of every home — and we make sure it is fresh, clean, and foodsafe. Using degreasers, sanitizers, and odor removers, we tackle the toughest kitchen jobs.",
       mainImage: KitchenCleaningImg,
         details: [
