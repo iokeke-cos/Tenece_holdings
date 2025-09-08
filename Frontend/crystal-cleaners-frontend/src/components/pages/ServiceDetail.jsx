@@ -34,7 +34,7 @@ export default function ServiceDetail() {
         <div className="service-detail-info">
           <h1 className="service-detail-heading">{service.title}</h1>
           <h3 className="service-detail-price">
-            At : {formattedPrice}
+            Starting from: {formattedPrice}
           </h3>
           <p className="service-detail-brief">{service.brief}</p>
           <ul className="service-detail-bullet-points">
