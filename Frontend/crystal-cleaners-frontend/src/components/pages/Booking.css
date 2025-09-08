@@ -27,6 +27,7 @@ body {
     opacity: 0;
     transform: translateY(20px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -115,28 +116,32 @@ select.form-input-full {
   background-size: 16px;
 }
 
+/* --- Validation Styling --- */
+/* Highlight invalid fields in red */
+.form-input.invalid,
+.form-input-full.invalid {
+  border: 2px solid #e74c3c !important;
+  /* A clear red border */
+  box-shadow: 0 0 5px rgba(231, 76, 60, 0.5);
+  /* A red glow for emphasis */
+}
+
+/* Style the error message text */
 .error-message {
-  color: red;
+  color: #e74c3c;
   font-size: 0.85rem;
-  margin-top: 4px;
+  margin-top: 5px;
   display: block;
 }
 
-/* --- Browser Default Validation Styling --- */
-/* Only highlight invalid fields after submit */
-.booking-form.submitted input:invalid,
-.booking-form.submitted select:invalid,
-.booking-form.submitted textarea:invalid {
-  border-color: #e63946;
-  box-shadow: 0 0 0 3px rgba(230, 57, 70, 0.3);
+/* Ensure the red border persists on focus */
+.form-input.invalid:focus,
+.form-input-full.invalid:focus {
+  outline: none;
+  border-color: #c0392b !important;
+  box-shadow: 0 0 5px rgba(231, 76, 60, 0.8) !important;
 }
 
-.booking-form.submitted input:valid,
-.booking-form.submitted select:valid,
-.booking-form.submitted textarea:valid {
-  border-color: #38b000;
-  box-shadow: 0 0 0 3px rgba(56, 176, 0, 0.2);
-}
 /* --- End Validation Styling --- */
 
 .submit-button {
@@ -159,9 +164,12 @@ select.form-input-full {
 }
 
 .response-msg {
-  background-color: #e6ffed;   /* soft green background */
-  color: #0f5132;              /* dark green text */
-  border: 1px solid #b6e0c2;   /* light green border */
+  background-color: #e6ffed;
+  /* soft green background */
+  color: #0f5132;
+  /* dark green text */
+  border: 1px solid #b6e0c2;
+  /* light green border */
   padding: 12px 16px;
   border-radius: 8px;
   font-size: 16px;
@@ -177,6 +185,7 @@ select.form-input-full {
     opacity: 0;
     transform: translateY(-5px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);

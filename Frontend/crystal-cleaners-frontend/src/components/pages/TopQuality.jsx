@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import tick from "../../assets/tick.png";
 
 export default function TopQuality () {
@@ -41,7 +42,8 @@ export default function TopQuality () {
           <br />
 
           <div className="last-part">
-            <button>Book Your Home Clean</button>
+
+            <Link to ="/services" className="book-clean-button ">Book Your Home Clean</Link>
             <br /> <br />
             <p
               className="cleans-booked"

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from "react-router-dom";
 import './Stats.css'; // Import its dedicated CSS
 
 export default function Stats() {
@@ -23,7 +24,7 @@ export default function Stats() {
           ))}
         </div>
 
-        <button className="book-clean-button">Book Your Home Clean</button>
+        <Link to= "/services" className="book-clean-button">Book Your Home Clean</Link>
         <p className="stats-booking-info">34 cleans booked in the last 24 hours</p>
       </div>
     </section>

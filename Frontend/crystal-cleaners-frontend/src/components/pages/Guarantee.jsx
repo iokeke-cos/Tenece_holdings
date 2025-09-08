@@ -1,4 +1,5 @@
 import moneyBack from "../../assets/money-back.png";
+import { Link } from "react-router-dom";
 
 export default function Guarantee() {
 
@@ -21,9 +22,9 @@ export default function Guarantee() {
                     <br />
                     <br />
         
-                    <button style={{ fontSize: "24px" }}>
+                    <Link to="/about" className="book-clean-button">
                       Learn More The Shine Guarantee
-                    </button>
+                    </Link>
                   </div>
                 </div>
               </section>

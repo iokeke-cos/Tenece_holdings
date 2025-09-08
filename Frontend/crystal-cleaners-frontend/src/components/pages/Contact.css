@@ -1,28 +1,38 @@
 .contact {
   background-color: #F4F4F4;
-  
 }
-
 
 .contact-flex-container {
   display: flex;
   margin: 60px;
   justify-content: center;
   gap: 50px;
- 
-  
-  
-  
 }
 
+.text-part {
+  /* This flex-basis and max-width will help on larger screens */
+  flex-basis: 50%;
+  max-width: 600px;
+}
+
+.map-image {
+  flex-basis: 50%;
+  max-width: 600px;
+}
+
+.map-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
 
 
 .details-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  
-  
+  gap: 30px; /* Add a gap for spacing */
 }
+
 .text-part p {
   line-height: 30px;
 }
@@ -37,7 +47,6 @@
 
 .button-part {
   margin-top: 100px;
-
 }
 
 .button-part button {
@@ -56,113 +65,59 @@
 }
 
 .text-part hr {
-  width: 450px;
+  /* Use a percentage width for responsiveness */
+  width: 90%;
+  max-width: 450px; /* Keep it from getting too wide on large screens */
+  border: 1px solid #1414142E;
 }
 
+/* --- Responsive Styles ---
+  Breakpoints at 1024px for tablets and 768px for phones
+*/
 
+@media (max-width: 1024px) {
+  .contact-flex-container {
+    flex-direction: column; /* Stack the text and map vertically */
+    margin: 30px 20px;
+    gap: 30px;
+    align-items: center; /* Center the stacked items */
+  }
 
+  /* Make the main sections take up the full width */
+  .text-part,
+  .map-image {
+    width: 100%;
+    max-width: none;
+    text-align: center;
+  }
+}
 
-
-
-
-
-
-
-
-/* .contact {
-  background-color: #F4F4F4;
-  margin: 0;
-  padding: 0;
+@media (max-width: 768px) {
+  /* Stack the grid items vertically for smaller phones */
+  .details-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
   
-}
-
-body {
-    overflow-x: hidden;
-}
-
-.contact {
-  padding: 2rem;
-  margin: 30px;
-}
-
-.contact-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 1rem;
-  background-color: g;
-}
-
-.contact-info {
-  flex: 1;
-}
-
-.contact-map {
-  flex: 1;
+  /* Reset margins for a cleaner mobile layout */
+  .email, .button-part {
+    margin-top: 20px;
+  }
   
+  /* Make the title font size smaller for mobile */
+  .text-part h2 {
+    font-size: 32px !important;
+  }
 }
 
-
-
-.contact-details {
-  margin: 1rem 0;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-
-  grid-row-gap: 40px ;
+@media (max-width: 480px) {
+  /* Further reduce the title size for small phones */
+  .text-part h2 {
+    font-size: 28px !important;
+  }
   
-
-
+  /* Center the hr element */
+  .text-part hr {
+    margin: 20px auto;
+  }
 }
-
-
-
-
-
-
-
-.contact-button {
-  margin-top: 6rem;
-  position: relative;
-  bottom: 50px;
-}
-
-.contact-button button {
-  padding: 1.3rem 1.5rem;
-  color: #fff;
-  border: none;
-  cursor: pointer;
-  border-radius: 10px;
-  font-size: 20px;
-  font-weight: 600;
-  background-color: #2937B1;
-  
-
-
-  
-}
-
-.contact-button button:hover {
-    background-color: #202a87;
-}
-
-.note {
-  font-size: 0.8rem;
-  margin-top: 0.5rem;
-  color: gray;
-}
-
-hr {
-  position: relative;
-  right: 95px;
-  
-}
-
-.icon {
-  font-size: 1.2em;
-  position: relative;
-  top: 5px;
-
-}
-
- */

@@ -1,10 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&display=swap');
 
-.active {
+nav ul li a.active {
     color: black;
 }
 
-nav {
+.navbar-container {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -12,10 +12,10 @@ nav {
     position: sticky;
     top: 0;
     padding: 5px;
-    z-index: 1000; /* Ensures the navbar is always on top */
+    z-index: 1000;
 }
 
-nav .brand {
+.navbar-container .brand {
     display: flex;
     align-items: center;
     margin-left: 100px;
@@ -23,7 +23,7 @@ nav .brand {
     gap: 0.5rem;
 }
 
-nav .title {
+.navbar-container .title {
     font-size: 1.5rem;
     margin: 1rem;
     font-weight: bold;
@@ -31,32 +31,40 @@ nav .title {
     color: black;
 }
 
-nav .title .logo {
+.navbar-container .title .logo {
     width: 50px;
     height: auto;
     object-fit: contain;
     margin-right: -0.3rem;
 }
 
-nav .brand-text {
+.navbar-container .brand-text {
     display: flex;
     flex-direction: column;
     line-height: 1.2;
 }
 
-nav .brand-name {
+.navbar-container .brand-name {
     font-size: 1rem;
     font-weight: bold;
     font-family: 'Montserrat', sans-serif;
 }
 
-nav .brand-sub {
+.navbar-container .brand-sub {
     font-size: 1rem;
     font-weight: bold;
     font-family: 'Montserrat', sans-serif;
 }
 
-nav ul {
+.nav-links-wrapper {
+    display: flex;
+    flex: 1;
+    justify-content: space-between;
+    align-items: center;
+    margin-right: 7rem;
+}
+
+.main-nav-list {
     list-style: none;
     display: flex;
     justify-content: center;
@@ -66,11 +74,11 @@ nav ul {
     padding: 0;
 }
 
-nav ul li {
+.main-nav-list li {
     list-style: none;
 }
 
-nav ul li a {
+.main-nav-list li a {
     display: block;
     text-decoration: none;
     color: #6b7280;
@@ -80,24 +88,19 @@ nav ul li a {
     transition: color 0.2s ease-in-out;
 }
 
-nav ul li a:not(.active):hover {
+.main-nav-list li a:not(.active):hover {
     color: black;
 }
 
-/* Right-side button */
-.rightbtn {
-    margin-right: 7rem;
-}
-
 /* Position the services link relative to its children */
-nav ul li.services-link {
+.services-link {
     position: relative;
 }
 
 /* Position the new container relative to its children */
 .dropdown-container {
     position: relative;
-    display: flex; /* To keep the link and arrow inline */
+    display: flex;
     align-items: center;
 }
 
@@ -129,7 +132,7 @@ nav ul li.services-link {
 /* Styles for the items inside the dropdown */
 .services-dropdown li a {
     white-space: nowrap;
-     padding: 0.1rem 1rem;
+    padding: 0.1rem 1rem;
     color: #333;
     display: block;
     text-decoration: none;
@@ -141,7 +144,7 @@ nav ul li.services-link {
     background-color: #f4f4f4;
 }
 
-nav .rightbtn .btn {
+.rightbtn .btn {
     padding: 0.5rem 1rem;
     background-color: transparent;
     color: black;
@@ -155,28 +158,136 @@ nav .rightbtn .btn {
     font-weight: 500;
 }
 
-nav .rightbtn .btn:hover {
+.rightbtn .btn:hover {
     background-color: black;
     color: white;
 }
 
-nav .rightbtn .btn .phone-icon {
+.rightbtn .btn .phone-icon {
     transform: rotate(90deg);
 }
 
-/* Responsive adjustments (no hamburger) */
+/* --- HAMBURGER MENU & MOBILE STYLES --- */
+
+/* Hide the hamburger icon by default on large screens */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    gap: 5px;
+}
+
+.hamburger .bar {
+    width: 25px;
+    height: 3px;
+    background-color: black;
+    transition: all 0.3s ease;
+}
+
+/* Mobile responsive adjustments */
+@media (max-width: 1024px) {
+
+    /* Hide the desktop menu and show the hamburger on smaller screens */
+    .nav-links-wrapper {
+        position: fixed;
+        flex-direction: column;
+        justify-content: flex-start;
+        top: 0;
+        right: -100%;
+        /* Initially off-screen to the right */
+        width: 70%;
+        max-width: 300px;
+        height: 100vh;
+        background-color: #ffffff;
+        padding-top: 5rem;
+        box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
+        transition: right 0.4s ease-in-out;
+        z-index: 999;
+    }
+
+    /* Show the menu when the "open" class is active */
+    .nav-links-wrapper.open {
+        right: 0;
+    }
+
+    .main-nav-list {
+        flex-direction: column;
+        align-items: flex-start;
+        width: 100%;
+        margin: 0;
+        padding: 0 1rem;
+    }
+
+    .main-nav-list li a {
+        width: 100%;
+        padding: 1rem 1.5rem;
+        font-size: 1.1rem;
+        color: #333;
+    }
+
+    .services-link .dropdown-container {
+        padding: 1rem 1.5rem;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .services-link .services-dropdown {
+        position: static;
+        /* Stack the dropdown inside the menu */
+        box-shadow: none;
+        border: none;
+        transform: none;
+        padding-left: 1.5rem;
+    }
+
+    .services-link .services-dropdown li a {
+        padding: 0.5rem 1rem;
+        font-size: 1rem;
+    }
+
+    /* Show the hamburger icon on smaller screens */
+    .hamburger {
+        display: flex;
+        margin-right: 1.5rem;
+    }
+
+    /* Animate hamburger to an 'X' */
+    .hamburger.open .bar:nth-child(1) {
+        transform: rotate(-45deg) translate(-5px, 6px);
+    }
+
+    .hamburger.open .bar:nth-child(2) {
+        opacity: 0;
+    }
+
+    .hamburger.open .bar:nth-child(3) {
+        transform: rotate(45deg) translate(-5px, -6px);
+    }
+
+    .rightbtn {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        padding: 1rem;
+        box-sizing: border-box;
+    }
+}
+
+/* Tablet adjustments */
+@media (max-width: 768px) {
+    .navbar-container .brand {
+        margin-left: 2rem;
+    }
+
+    .rightbtn {
+        display: none;
+        /* Hide the phone number button on smaller tablets and phones */
+    }
+}
+
+/* Phone adjustments */
 @media (max-width: 480px) {
-    nav {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    nav ul {
-        flex-direction: column;
-        gap: 0.25rem;
-    }
-
-    nav .right {
-        margin: 1rem 0 0 0;
+    .navbar-container .brand {
+        margin-left: 1rem;
     }
 }

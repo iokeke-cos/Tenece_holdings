@@ -1,4 +1,6 @@
 import React from 'react';
+import { Link } from "react-router-dom";
+
 import './BookingSection.css'; // Import its dedicated CSS
 
 import BookingStepsImg from '../assets/BookingStepsImg.png'; 
@@ -13,7 +15,9 @@ export default function BookingSection() {
           <img src={BookingStepsImg} alt="Booking Steps" className="booking-img" />
         </div>
 
-        <button className="book-clean-button">Book Your Home Clean</button>
+        <Link to="/services" className="book-clean-button">
+          Book Your Home Clean
+        </Link>
         <p className="booking-info">34 cleans booked in the last 24 hours</p>
       </div>
     </section>

@@ -27,8 +27,8 @@ export default function ServicesSection() {
         { 
             icon: <img src={OfficeCleaningIcon} alt="Office Cleaning Icon" className="custom-service-icon" />, 
             title: "Office Cleaning", 
-            link: "/services/office-cleaning", // Changed to actual link for consistency
-            hoverBgImage: OfficeCleaningImg // Add unique hover background
+            link: "/services/office-cleaning",
+            hoverBgImage: OfficeCleaningImg // Add hover background
         },
         { 
             icon: <img src={WindowCleaningIcon} alt="Window Cleaning Icon" className="custom-service-icon" />, 

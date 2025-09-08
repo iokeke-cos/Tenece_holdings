@@ -24,66 +24,45 @@ export default function Footer() {
     <>
       <footer>
         <div className="footer-content">
-        <div className="first-part">
-          <Link to="/">
-            {" "}
-            <img src={logo} className="footer-logo" />
-          </Link>
+          <div className="first-part">
+            <Link to="/">
+              {" "}
+              <img src={logo} className="footer-logo" />
+            </Link>
 
-          <nav>
-            <ul>
-              <li>
-                <NavLink to="/">Home</NavLink>
-              </li>
+            <nav>
+              <ul>
+                <li>
+                  <NavLink to="/">Home</NavLink>
+                </li>
 
-              <li>
-                <NavLink to="/about">About</NavLink>
-              </li>
+                <li>
+                  <NavLink to="/about">About</NavLink>
+                </li>
 
-              <li>
-                <NavLink to="/services" className="nav-link">
-                  Services
-                </NavLink>
+                <li>
+                  <NavLink to="/services" className="nav-link">
+                    Services
+                  </NavLink>
+                </li>
 
+                <li>
+                  <NavLink to="/faq">FAQ</NavLink>
+                </li>
 
-                {/* I'm working on the drop down menu for the footer services tab */}
+                <li>
+                  <NavLink to="/contact">Contact</NavLink>
+                </li>
 
-                {/* {isOpen && (
-                  <ul className="dropdown-menu">
-                    <li>
-                      <NavLink>Service1</NavLink>
-                    </li>
-                    <li>
-                      <NavLink>Service2</NavLink>
-                    </li>
-                    <li>
-                      <NavLink>Service3</NavLink>
-                    </li>
-                  </ul>
-                )} */}
+                <li>
+                  <NavLink to="booking">Booking</NavLink>
+                </li>
 
-              </li>
-
-              <li>
-                <NavLink to="/faq">FAQ</NavLink>
-              </li>
-
-              <li>
-                <NavLink to="/contact">Contact</NavLink>
-              </li>
-
-              <li>
-                <NavLink to="booking">Booking</NavLink>
-              </li>
-
-              <li>
-                <NavLink to="blog">Blog</NavLink>
-              </li>
-            </ul>
-            {/* these are the linkedin, X, and Facebook logos.
-                    I added an outer-logos div because I needed to adjust the position of the entire
-                    logo container */}
-
+                <li>
+                  <NavLink to="blog">Blog</NavLink>
+                </li>
+              </ul>
+            </nav>
             <div className="outer-logos">
               <div className="logos">
                 <img src={twitter} alt="X" />
@@ -91,22 +70,18 @@ export default function Footer() {
                 <img src={fb} alt="Facebook" />
               </div>
             </div>
-          </nav>
-        </div>
+          </div>
 
-        <hr />
+          <hr />
 
-        {/* I separated the footer into the content before the line, and 
-             content after the line  */}
+          <div className="second-part">
+            <p className="copyright">© 2023 © 2023 Webtechsolution.in</p>
 
-        <div className="second-part">
-          <p className="copyright">© 2023 © 2023 Webtechsolution.in</p>
-
-          <p className="privacy">
-            <span className="privacy-policy">Privacy Policy</span> |
-            <span className="cookies"> Cookies</span>
-          </p>
-        </div>
+            <p className="privacy">
+              <span className="privacy-policy">Privacy Policy</span> |
+              <span className="cookies"> Cookies</span>
+            </p>
+          </div>
         </div>
       </footer>
     </>

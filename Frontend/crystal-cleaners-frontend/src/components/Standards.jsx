@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from "react-router-dom";
 import './Standards.css'; 
 
 // Importing icons from react-icons/fa
@@ -31,7 +32,7 @@ export default function StandardsSection() {
             ))}
           </ul>
 
-          <button className="book-home-clean-button">Book Your Home Clean</button>
+          <Link to= "/services" className="book-home-clean-button">Book Your Home Clean</Link>
           <p className="standards-booking-info">34 cleans booked in the last 24 hours</p>
         </div>
 

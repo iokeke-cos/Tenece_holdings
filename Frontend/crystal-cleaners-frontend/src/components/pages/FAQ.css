@@ -4,21 +4,17 @@ body {
 
 .faqs {
   background-color: #f9f9f9;
-  
 }
 
 .faq-block {
   width: 100%;
   max-width: 1195px;
-  height: 600px;
-  
+  /* --- REMOVED: height: 600px; --- */
   
   box-sizing: border-box;
   margin: 50px auto;
   padding: 20px;
   border-radius: 12px;
-
-  
 }
 
 .faq-title {
@@ -67,11 +63,35 @@ body {
 }
 
 .faq-answer {
-    margin-top: 1rem;
+  margin-top: 1rem;
   padding: 0 15px 15px;
   font-size: 14px;
   color: #555;
   line-height: 1.5;
   border-radius: 6px;
   transition: all 0.3s ease;
+}
+
+/* --- Media Queries for Responsive Fonts --- */
+
+@media (max-width: 768px) {
+  /* Adjust the main title font size for tablets and smaller */
+  .faq-title {
+    font-size: 32px;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Adjust the main title font size for phones */
+  .faq-title {
+    font-size: 28px;
+  }
+  
+  .faq-question span {
+    font-size: 16px !important;
+  }
+  
+  .faq-answer {
+    font-size: 16px !important;
+  }
 }

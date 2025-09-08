@@ -1,17 +1,12 @@
-// src/components/pages/BlogPost.jsx
-
 import React from 'react';
 import { useParams, Link } from 'react-router-dom';
-import blogPosts from '../../blogData'; // Import the data file
-import './BlogPost.css'; // You'll create this CSS file next
+import blogPosts from '../../blogData';
+import './BlogPost.css';
 
 export default function BlogPost() {
-  const { postId } = useParams(); // Get the postId from the URL
-
-  // Find the blog post that matches the ID
+  const { postId } = useParams();
   const post = blogPosts.find(p => p.id === parseInt(postId));
 
-  // If no post is found, display a message
   if (!post) {
     return (
       <div className="blog-post-full">
@@ -22,16 +17,32 @@ export default function BlogPost() {
     );
   }
 
-  // Display the full content of the post
+  // Split the content to wrap the first paragraph
+  const contentParagraphs = post.content.split(/\n\s*\n/);
+  const firstParagraph = contentParagraphs[0];
+  const remainingContent = contentParagraphs.slice(1).join('\n\n');
+
   return (
     <div className="blog-post-full">
       <header className="blog-post-header">
         <h1>{post.title}</h1>
         <p className="blog-post-date">Published on {post.date}</p>
       </header>
+      
       <main className="blog-post-content">
-        <p>{post.content}</p>
+        <div className="content-with-image">
+          <img
+            src={post.image}
+            alt={post.title}
+            className="blog-post-image"
+          />
+          <p>{firstParagraph}</p>
+        </div>
+        
+        {remainingContent && <p>{remainingContent}</p>}
+
       </main>
+      
       <Link to="/blog" className="return-link">← Back to all posts</Link>
     </div>
   );

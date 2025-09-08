@@ -11,14 +11,16 @@
   margin-bottom: 3rem;
 }
 
-.about-hero p{
-    color:#555;
+.about-hero p {
+  color: #555;
 }
 
 .about-hero h1 {
-  font-size: 48px;
+  font-size: 3rem;
+  font-weight: 800;
+  line-height: 1.2;
   margin-bottom: 0.5rem;
-  color: #222;
+  color: #141414BF;
 }
 
 .about-section {
@@ -50,8 +52,6 @@
   color: #555;
 }
 
-
-
 .about-image {
   flex: 1;
 }
@@ -59,43 +59,85 @@
 .about-image img {
   width: 100%;
   border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-
 .values-container {
-    display: flex;
-    justify-content: center;
-    gap: 50px;
-    
+  display: flex;
+  justify-content: center;
+  gap: 50px;
+  /* Allow cards to wrap to the next line */
+  flex-wrap: wrap; 
 }
 
 .card {
-    border: 1px solid white;
-    width: 250px;
-    height: 200px;
-    border-bottom: 20px solid #2937B1;
-    background-color: white;
-    padding: 10px;
-    border-radius: 10px;
-    
-
-
-
+  border: 1px solid white;
+  /* Use a min-width instead of a fixed width */
+  min-width: 220px; 
+  flex: 1 1 220px; /* A better, more flexible way to size flex items */
+  height: 200px;
+  border-bottom: 20px solid #2937B1;
+  background-color: white;
+  padding: 10px;
+  border-radius: 10px;
+  box-sizing: border-box; /* Ensures padding doesn't add to width */
 }
 
 .values h2 {
-    text-align: center;
-    font-size: 24px;
+  text-align: center;
+  font-size: 24px;
 }
 
 .values-container h4 {
-    font-size: larger;
+  font-size: larger;
 }
 
 .values-container p {
-    color: #555;
-    font-size: 18px;
+  color: #555;
+  font-size: 18px;
 }
 
 
+/* --- Responsive Styles for Mobile & Tablet --- */
+@media (max-width: 768px) {
+  /* Stack sections vertically on smaller screens */
+  .about-section {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .about-text h2 {
+    font-size: 22px;
+  }
+
+  .about-text p {
+    font-size: 17px;
+  }
+
+  /* Center the values section heading */
+  .values h2 {
+    text-align: center;
+  }
+  
+  /* Make the cards responsive */
+  .values-container {
+    flex-direction: column; /* Stack the cards on top of each other */
+    align-items: center; /* Center them horizontally */
+    gap: 20px; /* Reduce the gap for mobile view */
+  }
+
+  .card {
+    width: 90%; /* Make cards take up most of the screen width */
+    max-width: 300px; /* Prevent them from getting too wide on tablets */
+  }
+  
+  .about-hero h1 {
+    font-size: 2.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+    .about-text {
+        padding: 0 1rem;
+    }
+}

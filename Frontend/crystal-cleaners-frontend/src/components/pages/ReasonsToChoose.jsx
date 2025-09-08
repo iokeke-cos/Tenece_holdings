@@ -1,3 +1,6 @@
+import { Link } from "react-router-dom";
+
+
 import awardIcon from "../../assets/award-icon.png";
 import handCleaning from "../../assets/hand-cleaning.png";
 import handVacuum from "../../assets/hand-vacuum.png";
@@ -30,7 +33,7 @@ export default function ReasonsToChoose() {
                   Reasons To Choose <br /> Crystal Cleaners, Today
                 </h1>
                 <br />
-                <p style={{ color: "#141414BF", fontSize: "18px" }}>
+                <p style={{ color: "#141414BF", fontSize: "18px", marginBottom: "50px"}}>
                   Choose House Cleaning SF for exceptional cleaning services. <br />
                   Contact us today to schedule your first cleaning session and
                   <br />
@@ -39,9 +42,11 @@ export default function ReasonsToChoose() {
               </div>
 
               <div className="button-component">
-                <button>Book Your Home Clean</button>
+                <Link to="/services" className="book-clean-button">
+                  Book Your Home Clean
+                </Link>
                 <br /> <br />
-                <p className="choose-us-meta" style={{ color: "#141414BF", fontSize: "16px" }}>
+                <p className="choose-us-meta" style={{ color: "#141414BF", fontSize: "16px", marginTop: "20px" }}>
                   34 cleans booked in the last 24 hours
                 </p>
               </div>

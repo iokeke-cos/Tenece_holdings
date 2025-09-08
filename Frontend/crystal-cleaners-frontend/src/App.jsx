@@ -12,7 +12,7 @@ import Footer from './components/Footer.jsx';
 import ServiceDetail from "./components/pages/ServiceDetail";
 import BlogPost from "./components/pages/BlogPost";
 import BlogDisplay from "./components/pages/BlogDisplay.jsx";
-
+import Payment from "./components/pages/Payment";
 
 function App() {
   return (
@@ -29,7 +29,7 @@ function App() {
           <Route path="/booking" element={<Booking />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/blog/:postId" element={<BlogPost />} />
-          
+          <Route path="/payment/:bookingId" element={<Payment />} /> {/* Add this new route */}
         </Routes>
       </div> {/* Close the wrapper */}
       <Footer />

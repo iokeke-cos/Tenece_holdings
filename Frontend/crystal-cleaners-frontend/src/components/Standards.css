@@ -25,8 +25,8 @@
 }
 
 .standards-heading {
-  font-size: 3rem;
-  font-weight: 600; /* Extra bold for prominence */
+  font-size: 2.5rem;
+  font-weight: 700; /* Extra bold for prominence */
   line-height: 1.1;
   margin-bottom: 2.5rem;
 }
@@ -53,6 +53,7 @@
 }
 
 .book-home-clean-button {
+  text-decoration: none;
   background-color: #2937B1; /* Primary blue for the button */
   color: white;
   padding: 1rem 2.5rem;
@@ -73,7 +74,9 @@
 .standards-booking-info {
   font-size: 0.9rem;
   color: #6b7280;
-  margin-top: 0;
+  margin-top: 30px;
+  margin-left: 20px;
+  
 }
 
 /* --- Right Side: Single Image --- */

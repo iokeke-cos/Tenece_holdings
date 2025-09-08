@@ -47,7 +47,7 @@
 } */
 
 .choose-us button {
-    padding: 1.3rem 1.5rem;
+    padding: 1.6rem 1.9rem;
     color: #fff;
     border: none;
     cursor: pointer;
@@ -292,6 +292,11 @@
 
 .guarantee-section button:hover {
     background-color: #1d4ed8;
+}
+
+.guarantee-section .text {
+    /* Add this line to move the content down */
+    margin-top: 85px; 
 }
 
 .guarantee-section .text p {
