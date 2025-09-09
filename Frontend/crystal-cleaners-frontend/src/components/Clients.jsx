@@ -17,7 +17,7 @@ export default function Clients() {
   return (
     <section className="clients">
       <div className="clients-container">
-        <p>Trusted By Thousands of Client</p>
+        <p>Trusted By Thousands of Clients</p>
 
         <div className="client-logos">
           <div className="logo-item">
