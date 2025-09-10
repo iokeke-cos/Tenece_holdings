@@ -1,197 +1,223 @@
-.booking-form {
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+body {
+  background-color: #A0D2EB;
+  font-family: 'Inter', sans-serif;
+  color: #333;
+  display: flex;
+  justify-content: center;
+  min-height: 150vh;
+  margin: 0;
+}
+
+.booking-form-container {
   max-width: 600px;
-  width: 95%;
-  margin: 2rem auto;
+  width: 90%;
   padding: 2.5rem;
-  background: #eaf3ff;
-  border-radius: 1rem;
-  border: 2px solid #4a90e2;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
-  position: relative;
-  z-index: 1;
-  box-sizing: border-box;
+  border-radius: 16px;
+  background-color: #E5EAF5;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  border: 2px solid #D2D7F3;
+  animation: fadeIn 0.8s ease-in-out;
+  margin: 2rem auto;
 }
 
-.booking-form h2 {
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.form-title {
   text-align: center;
-  margin-bottom: 1.8rem;
-  color: #1e288e;
-  font-size: 1.8rem;
+  color: #2937b1;
+  margin-bottom: 2.5rem;
   font-weight: 700;
+  font-size: 2rem;
 }
 
-/* Form Groups */
+.booking-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
 .form-group {
-  margin-bottom: 1.2rem;
-  position: relative;
-  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
 }
 
 .form-group label {
-  display: block;
-  margin-bottom: 0.4rem;
   font-weight: 600;
-  color: #333;
+  color: #555;
+  font-size: 1rem;
 }
 
-.input-wrapper {
+.input-group-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.input-with-icon {
+  position: relative;
   display: flex;
   align-items: center;
-  position: relative;
-  z-index: 1;
+  flex-grow: 1;
 }
 
 .input-icon {
   position: absolute;
-  left: 0.8rem;
-  color: #666;
-  font-size: 1.1rem;
-  z-index: 2;
-  top: 50%;
-  transform: translateY(-50%);
+  left: 12px;
+  width: 20px;
+  height: 20px;
+  fill: #888;
 }
 
-/* Default input styling */
-.input-wrapper input,
-.input-wrapper select,
-.input-wrapper textarea {
+.form-input,
+.form-input-full {
   width: 100%;
-  padding: 0.75rem 0.75rem 0.75rem 2.8rem;
-  border: 1px solid #ccc;
-  border-radius: 0.5rem;
+  padding: 14px 14px 14px 45px;
+  border: 1px solid #c9d0e2;
+  border-radius: 8px;
   font-size: 1rem;
-  transition: all 0.3s ease;
-  background-color: #fff;
+  background-color: #f0f2f8;
   box-sizing: border-box;
+  transition: all 0.3s ease;
 }
 
-/* Service dropdown arrow */
-.input-wrapper select {
+.form-input:focus,
+.form-input-full:focus,
+.form-input:hover,
+.form-input-full:hover {
+  outline: none;
+  border-color: #2937b1;
+  box-shadow: 0 0 0 3px rgba(41, 55, 177, 0.2);
+}
+
+.form-input::placeholder {
+  color: #a0a0a0;
+}
+
+select.form-input-full {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
-  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20width%3D'10'%20height%3D'6'%20viewBox%3D'0%200%2010%206'%20xmlns%3D'http://www.w3.org/2000/svg'%3E%3Cpath%20d%3D'M0%200l5%206%205-6z'%20fill%3D'%23666'%2F%3E%3C%2Fsvg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
   background-repeat: no-repeat;
-  background-position: right 1.2rem center; 
-  background-size: 10px 6px;
-  padding-right: 2rem; 
+  background-position: right 15px center;
+  background-size: 16px;
 }
 
-/* Focus Effect */
-.input-wrapper input:focus,
-.input-wrapper select:focus,
-.input-wrapper textarea:focus {
-  border-color: #1e288e;
-  outline: none;
-  box-shadow: 0 0 4px rgba(30, 40, 142, 0.3);
+/* Highlight filled fields in bold blue */
+.form-input.filled,
+.form-input-full.filled {
+  border: 2px solid #2937b1; /* thicker border */
+  box-shadow: 0 0 8px rgba(41, 55, 177, 0.7); /* stronger glow */
 }
 
-/* Error Handling */
-.has-error input,
-.has-error select,
-.has-error textarea {
-  border: 2px solid #e63946;
-  background-color: #ffe6e9;
-  padding-left: 2.7rem;
+
+/* --- Validation Styling --- */
+/* Highlight invalid fields in red */
+.form-input.invalid,
+.form-input-full.invalid {
+  border: 2px solid #e74c3c !important;
+  /* A clear red border */
+  box-shadow: 0 0 5px rgba(231, 76, 60, 0.5);
+  /* A red glow for emphasis */
 }
 
-/* Reset normal state */
-.form-group:not(.has-error) input,
-.form-group:not(.has-error) select,
-.form-group:not(.has-error) textarea {
-  background-color: #fff;
-  border: 1px solid #ccc;
-  padding-left: 2.8rem;
-}
-
-/* Error Message */
-.error {
-  color: #e63946;
-  font-size: 0.9rem;
-  margin-top: 0.3rem;
+/* Style the error message text */
+.error-message {
+  color: #e74c3c;
+  font-size: 0.85rem;
+  margin-top: 5px;
   display: block;
 }
 
-/* Submit Button */
-.submit-btn {
-  width: 100%;
-  padding: 0.9rem;
-  background-color: #1e288e;
+/* Ensure the red border persists on focus */
+.form-input.invalid:focus,
+.form-input-full.invalid:focus {
+  outline: none;
+  border-color: #c0392b !important;
+  box-shadow: 0 0 5px rgba(231, 76, 60, 0.8) !important;
+}
+
+/* --- End Validation Styling --- */
+
+.submit-button {
+  padding: 1rem;
+  background-color: #2937b1;
   color: #fff;
-  font-size: 1.05rem;
-  font-weight: 600;
   border: none;
-  border-radius: 0.5rem;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: bold;
   cursor: pointer;
-  transition: background 0.3s ease;
+  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 4px 10px rgba(41, 55, 177, 0.3);
 }
 
-.submit-btn:hover {
-  background-color: #141f6d;
+.submit-button:hover {
+  background-color: #1e288e;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(41, 55, 177, 0.4);
 }
 
-/* Date & Time side by side */
-.date-time-container {
-  display: flex;
-  gap: 1rem;
-  flex-wrap: wrap;
-}
-
-.date-time-container .form-group {
-  flex: 1 1 48%;
-}
-
-/* Success Message Styling */
-.success-message {
-  margin-top: 1rem;
-  padding: 0.75rem 1rem;
-  background-color: #d4edda; /* light green */
-  color: #155724; /* dark green text */
-  border: 1px solid #c3e6cb;
-  border-radius: 0.5rem;
-  font-weight: 600;
+.response-msg {
+  background-color: #e6ffed;
+  /* soft green background */
+  color: #0f5132;
+  /* dark green text */
+  border: 1px solid #b6e0c2;
+  /* light green border */
+  padding: 12px 16px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 500;
+  margin-top: 20px;
   text-align: center;
-  transition: opacity 0.3s ease;
+  animation: fadeIn 0.5s ease-in-out;
 }
 
-/* Responsive tweaks */
-@media (max-width: 480px) {
-  .booking-form {
-    padding: 1.5rem;
+/* simple fade-in animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
   }
-  .booking-form h2 {
-    font-size: 1.5rem;
-  }
-  .input-wrapper input,
-  .input-wrapper select,
-  .input-wrapper textarea {
-    padding-left: 2.2rem;
-    font-size: 0.95rem;
-  }
-  .submit-btn {
-    font-size: 1rem;
-    padding: 0.8rem;
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
 @media (max-width: 768px) {
-  .booking-form {
-    padding: 2rem;
+  .booking-form-container {
+    padding: 1.5rem;
+    margin: 1rem;
   }
-  .booking-form h2 {
-    font-size: 1.6rem;
-  }
-  .input-wrapper input,
-  .input-wrapper select,
-  .input-wrapper textarea {
-    padding-left: 2.5rem;
-    font-size: 1rem;
-  }
-}
 
-@media (max-width: 360px) {
+  .input-group-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .form-input,
+  .form-input-full {
+    padding-left: 40px;
+  }
+
   .input-icon {
-    font-size: 0.95rem;
-    left: 0.6rem;
+    left: 10px;
+    width: 18px;
+    height: 18px;
   }
 }

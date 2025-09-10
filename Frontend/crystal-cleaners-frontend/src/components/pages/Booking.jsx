@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   FaUser,
@@ -10,252 +10,249 @@ import {
   FaBroom,
   FaRegCommentDots,
 } from "react-icons/fa";
-import allServices from "../../ServicesData";
 import "./Booking.css";
 
 const BookingForm = () => {
+  const [showSuccess, setShowSuccess] = useState(false);
+  const [errors, setErrors] = useState({});
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    address: '',
+    date: '',
+    time: '',
+    serviceType: '',
+    message: ''
+  });
   const navigate = useNavigate();
 
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    address: "",
-    date: "",
-    time: "",
-    service: "",
-    notes: "",
-  });
-
-  const [errors, setErrors] = useState({});
-  const [success, setSuccess] = useState(false);
-
-  const fieldRefs = {
-    name: useRef(null),
-    email: useRef(null),
-    phone: useRef(null),
-    address: useRef(null),
-    date: useRef(null),
-    time: useRef(null),
-    service: useRef(null),
-  };
-
-  // Validation
   const validateForm = (data) => {
     const newErrors = {};
-    if (!data.name.trim()) newErrors.name = "Full name is required.";
-    if (!data.email.trim()) newErrors.email = "Email is required.";
+    if (!data.name) newErrors.name = "Full name is required.";
+    if (!data.email) newErrors.email = "Email is required.";
     else if (!/\S+@\S+\.\S+/.test(data.email)) newErrors.email = "Email address is invalid.";
-    if (!data.phone.trim()) newErrors.phone = "Phone number is required.";
-    else if (!/^\d{10,15}$/.test(data.phone)) newErrors.phone = "Phone number should be 10–15 digits.";
-    if (!data.address.trim()) newErrors.address = "Address is required.";
+    if (!data.phone) newErrors.phone = "Phone number is required.";
+    else if (!/^\d{10,15}$/.test(data.phone)) newErrors.phone = "Phone number should be 10-15 digits.";
+    if (!data.address) newErrors.address = "Address is required.";
     if (!data.date) newErrors.date = "Preferred date is required.";
     if (!data.time) newErrors.time = "Preferred time is required.";
-    if (!data.service) newErrors.service = "Please select a service.";
+    if (!data.serviceType) newErrors.serviceType = "Please select a service.";
     return newErrors;
   };
 
-  // Handle input changes
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
 
-    // Real-time validation
-    setErrors((prev) => {
-      const updatedErrors = { ...prev };
-      if (name === "name" && value.trim()) delete updatedErrors.name;
-      if (name === "email" && value.trim() && /\S+@\S+\.\S+/.test(value)) delete updatedErrors.email;
-      if (name === "phone" && value.trim() && /^\d{10,15}$/.test(value)) delete updatedErrors.phone;
-      if (name === "address" && value.trim()) delete updatedErrors.address;
-      if (name === "date" && value) delete updatedErrors.date;
-      if (name === "time" && value) delete updatedErrors.time;
-      if (name === "service" && value) delete updatedErrors.service;
-      return updatedErrors;
-    });
+    if (errors[name]) {
+      setErrors(prev => ({ ...prev, [name]: '' }));
+    }
   };
 
-  // Handle submit
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const newErrors = validateForm(formData);
-    setErrors(newErrors);
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    const formErrors = validateForm(formData);
+    setErrors(formErrors);
 
-    if (Object.keys(newErrors).length > 0) {
-      const firstErrorField = Object.keys(newErrors)[0];
-      if (fieldRefs[firstErrorField] && fieldRefs[firstErrorField].current) {
-        fieldRefs[firstErrorField].current.scrollIntoView({ behavior: "smooth", block: "center" });
-        fieldRefs[firstErrorField].current.focus();
-      }
+    if (Object.keys(formErrors).length > 0) {
+      const firstInvalidField = document.querySelector(`[name="${Object.keys(formErrors)[0]}"]`);
+      if (firstInvalidField) firstInvalidField.scrollIntoView({ behavior: 'smooth', block: 'center' });
       return;
     }
 
-    console.log("Form submitted successfully:", formData);
-    setSuccess(true);
+    try {
+      const response = await fetch("http://localhost:5000/api/bookings", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
 
-    // Hide success message and redirect after 3 seconds
-    setTimeout(() => {
-      setSuccess(false);
-      navigate("/payment");
-    }, 3000);
+      if (!response.ok) {
+        const errMsg = await response.text();
+        throw new Error(errMsg || "Failed to send booking data");
+      }
+
+      const result = await response.json();
+      const bookingId = result.bookingId;
+
+      setShowSuccess(true);
+      setFormData({ name: '', email: '', phone: '', address: '', date: '', time: '', serviceType: '', message: '' });
+
+      // Navigate to payment page after 2 seconds
+      setTimeout(() => navigate("/payment"), 2000);
+
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      alert("Something went wrong. Please try again later.");
+    }
   };
 
   return (
-    <div className="booking-container">
+    <div className="booking-form-container glowing-container">
+      <h2 className="form-title">Booking Form</h2>
       <form className="booking-form" onSubmit={handleSubmit}>
-        <h2>Book a Cleaning Service</h2>
-
-        {/* Full Name */}
-        <div className={`form-group ${errors.name ? "has-error" : ""}`}>
-          <label>Full Name</label>
-          <div className="input-wrapper">
+        {/** Full Name **/}
+        <div className="form-group">
+          <label htmlFor="name">Full name</label>
+          <div className="input-with-icon">
             <FaUser className="input-icon" />
             <input
-              ref={fieldRefs.name}
               type="text"
               name="name"
-              value={formData.name}
-              onChange={handleChange}
               placeholder="Enter your full name"
+              className={`form-input ${errors.name ? 'invalid' : ''} ${formData.name ? 'filled' : ''}`}
+              value={formData.name}
+              onChange={handleInputChange}
+              id="name"
             />
           </div>
-          {errors.name && <p className="error">{errors.name}</p>}
+          {errors.name && <span className="error-message">{errors.name}</span>}
         </div>
 
-        {/* Email */}
-        <div className={`form-group ${errors.email ? "has-error" : ""}`}>
-          <label>Email</label>
-          <div className="input-wrapper">
+        {/** Email **/}
+        <div className="form-group">
+          <label htmlFor="email">Email</label>
+          <div className="input-with-icon">
             <FaEnvelope className="input-icon" />
             <input
-              ref={fieldRefs.email}
               type="email"
               name="email"
-              value={formData.email}
-              onChange={handleChange}
               placeholder="Enter your email"
+              className={`form-input ${errors.email ? 'invalid' : ''} ${formData.email ? 'filled' : ''}`}
+              value={formData.email}
+              onChange={handleInputChange}
+              id="email"
             />
           </div>
-          {errors.email && <p className="error">{errors.email}</p>}
+          {errors.email && <span className="error-message">{errors.email}</span>}
         </div>
 
-        {/* Phone */}
-        <div className={`form-group ${errors.phone ? "has-error" : ""}`}>
-          <label>Phone Number</label>
-          <div className="input-wrapper">
+        {/** Phone **/}
+        <div className="form-group">
+          <label htmlFor="phone">Phone Number</label>
+          <div className="input-with-icon">
             <FaPhone className="input-icon" />
             <input
-              ref={fieldRefs.phone}
               type="tel"
               name="phone"
-              value={formData.phone}
-              onChange={handleChange}
               placeholder="Enter your phone number"
+              className={`form-input ${errors.phone ? 'invalid' : ''} ${formData.phone ? 'filled' : ''}`}
+              value={formData.phone}
+              onChange={handleInputChange}
+              id="phone"
             />
           </div>
-          {errors.phone && <p className="error">{errors.phone}</p>}
+          {errors.phone && <span className="error-message">{errors.phone}</span>}
         </div>
 
-        {/* Address */}
-        <div className={`form-group ${errors.address ? "has-error" : ""}`}>
-          <label>Address</label>
-          <div className="input-wrapper">
+        {/** Address **/}
+        <div className="form-group">
+          <label htmlFor="address">Address</label>
+          <div className="input-with-icon">
             <FaMapMarkerAlt className="input-icon" />
             <input
-              ref={fieldRefs.address}
               type="text"
               name="address"
-              value={formData.address}
-              onChange={handleChange}
               placeholder="Enter your address"
+              className={`form-input ${errors.address ? 'invalid' : ''} ${formData.address ? 'filled' : ''}`}
+              value={formData.address}
+              onChange={handleInputChange}
+              id="address"
             />
           </div>
-          {errors.address && <p className="error">{errors.address}</p>}
+          {errors.address && <span className="error-message">{errors.address}</span>}
         </div>
 
-        {/* Date & Time Side by Side */}
-        <div className="date-time-container">
-          {/* Date */}
-          <div className={`form-group ${errors.date ? "has-error" : ""}`}>
-            <label>Preferred Date</label>
-            <div className="input-wrapper">
+        {/** Date & Time **/}
+        <div className="input-group-grid">
+          <div className="form-group">
+            <label htmlFor="date">Preferred date</label>
+            <div className="input-with-icon">
               <FaRegCalendarAlt className="input-icon" />
               <input
-                ref={fieldRefs.date}
                 type="date"
                 name="date"
+                className={`form-input-full ${errors.date ? 'invalid' : ''} ${formData.date ? 'filled' : ''}`}
                 value={formData.date}
-                onChange={handleChange}
+                onChange={handleInputChange}
+                id="date"
               />
             </div>
-            {errors.date && <p className="error">{errors.date}</p>}
+            {errors.date && <span className="error-message">{errors.date}</span>}
           </div>
 
-          {/* Time */}
-          <div className={`form-group ${errors.time ? "has-error" : ""}`}>
-            <label>Preferred Time</label>
-            <div className="input-wrapper">
+          <div className="form-group">
+            <label htmlFor="time">Preferred time</label>
+            <div className="input-with-icon">
               <FaRegClock className="input-icon" />
               <input
-                ref={fieldRefs.time}
                 type="time"
                 name="time"
+                className={`form-input-full ${errors.time ? 'invalid' : ''} ${formData.time ? 'filled' : ''}`}
                 value={formData.time}
-                onChange={handleChange}
+                onChange={handleInputChange}
+                id="time"
               />
             </div>
-            {errors.time && <p className="error">{errors.time}</p>}
+            {errors.time && <span className="error-message">{errors.time}</span>}
           </div>
         </div>
 
-        {/* Service */}
-        <div className={`form-group ${errors.service ? "has-error" : ""}`}>
-          <label>Service</label>
-          <div className="input-wrapper">
+        {/** Service type **/}
+        <div className="form-group">
+          <label htmlFor="serviceType">Type of cleaning service</label>
+          <div className="input-with-icon">
             <FaBroom className="input-icon" />
             <select
-              ref={fieldRefs.service}
-              name="service"
-              value={formData.service}
-              onChange={handleChange}
+              name="serviceType"
+              className={`form-input-full ${errors.serviceType ? 'invalid' : ''} ${formData.serviceType ? 'filled' : ''}`}
+              value={formData.serviceType}
+              onChange={handleInputChange}
+              id="serviceType"
             >
-              <option value="">Select a service</option>
-              {allServices.map((service) => (
-                <option key={service.id} value={service.id}>
-                  {service.title}
-                </option>
-              ))}
+              <option value="">Please select a service</option>
+              <option value="Office Cleaning">Office Cleaning</option>
+              <option value="Window Cleaning">Window Cleaning</option>
+              <option value="Carpet Cleaning">Carpet Cleaning</option>
+              <option value="Bedroom Cleaning">Bedroom Cleaning</option>
+              <option value="Bathroom Cleaning">Bathroom Cleaning</option>
+              <option value="Kitchen Cleaning">Kitchen Cleaning</option>
             </select>
           </div>
-          {errors.service && <p className="error">{errors.service}</p>}
+          {errors.serviceType && <span className="error-message">{errors.serviceType}</span>}
         </div>
 
-        {/* Message */}
+        {/** Message **/}
         <div className="form-group">
-          <label>Additional Message</label>
-          <div className="input-wrapper">
+          <label htmlFor="message">Special requests / Message</label>
+          <div className="input-with-icon">
             <FaRegCommentDots className="input-icon" />
             <textarea
-              name="notes"
-              value={formData.notes}
-              onChange={handleChange}
-              placeholder="Any additional information?"
-            ></textarea>
+              name="message"
+              placeholder="Enter any special instructions or requests"
+              className={`form-input-full ${formData.message ? 'filled' : ''}`}
+              rows="4"
+              value={formData.message}
+              onChange={handleInputChange}
+              id="message"
+            />
           </div>
         </div>
 
-        {/* Submit */}
-        <button type="submit" className="submit-btn">
-          Submit Booking
+        <button type="submit" className="submit-button">
+          Submit
         </button>
-
-        {/* Success Message */}
-        {success && <p className="success-message">Booking submitted successfully!</p>}
       </form>
+
+      {showSuccess && (
+        <p className="response-msg">
+          ✅ Your booking has been sent! Redirecting to payment...
+        </p>
+      )}
     </div>
   );
 };
 
 export default BookingForm;
+
