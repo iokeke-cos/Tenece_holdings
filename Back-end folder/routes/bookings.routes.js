@@ -1,16 +1,32 @@
 import express from 'express';
+import {body, validationResult} from 'express-validator';
 import Booking from '../models/booking.model.js';
 
 const router = express.Router();
 
-router.post('/', async (req, res) => {
+const bookingValidationRules = [
+  body('serviceType').notEmpty().withMessage('Service type is required'),
+  body('name').isLength({min: 3}).withMessage('Name must be at least 3 characters long'),
+  body('email').isEmail().withMessage('Please enter a valid email'),
+  body('phone').matches(/^[0-9]{10,15}$/).withMessage('Phone must be 10-15 digits'),
+  body('address').notEmpty().withMessage('Date is required'),
+  body('time').notEmpty().withMessage('Time is required'),
+  body('message').isLength({max: 500}).withMessage('Message must be under 500 characters'),
+];
+
+router.post('/', bookingValidationRules, async (req, res) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).json({
+      errors: errors.array().map(err => ({
+        field: err.path,
+        message: err.msg
+      }))
+    });
+  }
+  
   try {
     const {serviceType, name, email, phone, address, date, time, message} = req.body;
-
-    if (!serviceType || !name || !email || !date || !time) {
-      return res.status(400).json({message: 'Required fields missing'});
-    }
-
     const bookingDate = new Date(`${date}T${time}`);
 
     const booking = new Booking({
