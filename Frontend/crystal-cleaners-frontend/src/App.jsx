@@ -29,7 +29,7 @@ function App() {
           <Route path="/booking" element={<Booking />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/blog/:postId" element={<BlogPost />} />
-          <Route path="/payment/:bookingId" element={<Payment />} /> {/* Add this new route */}
+          <Route path="/payment" element={<Payment />} />
         </Routes>
       </div> {/* Close the wrapper */}
       <Footer />
