@@ -80,7 +80,15 @@ const BookingForm = () => {
       setFormData({ name: '', email: '', phone: '', address: '', date: '', time: '', serviceType: '', message: '' });
 
       // Navigate to payment page after 2 seconds
-      setTimeout(() => navigate("/payment"), 2000);
+      setTimeout(() => {navigate(("/payment"), {
+     
+          state: {
+          bookingId: bookingId,
+          serviceType: formData.serviceType,
+          customerEmail: formData.email, // optional: to prefill Paystack
+        },
+      });
+    }, 2000);
 
     } catch (error) {
       console.error("Error submitting form:", error);
@@ -251,7 +259,19 @@ const BookingForm = () => {
         </p>
       )}
     </div>
+
+    
   );
+  setTimeout(() => {
+  navigate("/payment", {
+    state: {
+      bookingId: bookingId,           // backend ID
+      serviceType: formData.serviceType,
+      customerEmail: formData.email,  // optional, for Paystack
+    },
+  });
+}, 2000);
+
 };
 
 export default BookingForm;
