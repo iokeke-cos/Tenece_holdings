@@ -77,18 +77,30 @@ const BookingForm = () => {
       const bookingId = result.bookingId;
 
       setShowSuccess(true);
-      setFormData({ name: '', email: '', phone: '', address: '', date: '', time: '', serviceType: '', message: '' });
-
+      
       // Navigate to payment page after 2 seconds
-      setTimeout(() => {navigate(("/payment"), {
-     
+      setTimeout(() => {
+        navigate("/payment", {
           state: {
-          bookingId: bookingId,
-          serviceType: formData.serviceType,
-          customerEmail: formData.email, // optional: to prefill Paystack
-        },
+            bookingId: bookingId,
+            serviceType: formData.serviceType,
+            customerEmail: formData.email,
+            customerName: formData.name // Added customer name for better tracking
+          },
+        });
+      }, 2000);
+
+      // Clear form data after successful submission
+      setFormData({ 
+        name: '', 
+        email: '', 
+        phone: '', 
+        address: '', 
+        date: '', 
+        time: '', 
+        serviceType: '', 
+        message: '' 
       });
-    }, 2000);
 
     } catch (error) {
       console.error("Error submitting form:", error);
@@ -259,20 +271,7 @@ const BookingForm = () => {
         </p>
       )}
     </div>
-
-    
   );
-  setTimeout(() => {
-  navigate("/payment", {
-    state: {
-      bookingId: bookingId,           // backend ID
-      serviceType: formData.serviceType,
-      customerEmail: formData.email,  // optional, for Paystack
-    },
-  });
-}, 2000);
-
 };
 
 export default BookingForm;
-

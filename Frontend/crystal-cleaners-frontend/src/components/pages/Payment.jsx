@@ -1,57 +1,100 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useParams, useLocation } from "react-router-dom";
 import PaystackPop from "@paystack/inline-js";
 import "./Payment.css";
 
-
 // Example services + prices (replace with your real booking data)
-  const services = [
-    { name: "Office Cleaning", price: 200000 },
-    { name: "Window Cleaning", price: 80000 },
-    { name: "Carpet Cleaning", price: 40000 },
-    {name: "Bathroom Cleaning", price: 30000},
-    {name: "Bedroom Cleaning", price: 25000},
-    {name: "Kitchen Cleaning", price: 35000},
-  ];
+const services = [
+  { name: "Office Cleaning", price: 200000 },
+  { name: "Window Cleaning", price: 80000 },
+  { name: "Carpet Cleaning", price: 40000 },
+  { name: "Bathroom Cleaning", price: 30000 },
+  { name: "Bedroom Cleaning", price: 25000 },
+  { name: "Kitchen Cleaning", price: 35000 },
+];
 
 const PaymentPage = () => {
-  //const { bookingId } = useParams();
   const { state } = useLocation();
   
-
-  const bookedServiceName = state?.serviceType || "Office Cleaning"; // fallback
-  const bookingId = state?.bookingId || "UNKNOWN";                 // backend ID
+  // State for room selection
+  const [numberOfRooms, setNumberOfRooms] = useState(1);
+  
+  const bookedServiceName = state?.serviceType || "Office Cleaning";
   const customerEmail = state?.customerEmail || "customer@email.com";
+  const customerName = state?.customerName || "Customer";
+  
+  // Generate proper booking ID with fallback
+  const bookingId = state?.bookingId || (() => {
+    console.warn("No booking ID received from booking form");
+    return "BK-" + Date.now().toString(36).toUpperCase() + Math.random().toString(36).substr(2, 3).toUpperCase();
+  })();
 
-  // 2. Find service details
+  // Find service details
   const bookedService = services.find(s => s.name === bookedServiceName) || services[0];
-//const totalAmount = bookedService.price;
-
   
+  // Calculate total amount based on number of rooms
+  const basePrice = bookedService.price;
+  const totalAmount = basePrice * numberOfRooms;
 
-  // Demo: assume user booked the first service
-  
-  const totalAmount = bookedService.price;
+  // Handle room number change
+  const handleRoomChange = (e) => {
+    const rooms = parseInt(e.target.value);
+    if (rooms > 0 && rooms <= 50) {
+      setNumberOfRooms(rooms);
+    }
+  };
+
+  // Increment/Decrement room functions
+  const incrementRooms = () => {
+    setNumberOfRooms(prev => prev < 50 ? prev + 1 : prev);
+  };
+
+  const decrementRooms = () => {
+    setNumberOfRooms(prev => prev > 1 ? prev - 1 : 1);
+  };
 
   const payWithPaystack = () => {
     const paystack = new PaystackPop();
     paystack.newTransaction({
-      key: "pk_test_5f7166886ef199f821ac8d2b8576da5d5b360ec2", //public test paystack key
-      email: customerEmail, // You can pass real booking email later
+      key: "pk_test_5f7166886ef199f821ac8d2b8576da5d5b360ec2",
+      email: customerEmail,
       amount: totalAmount * 100, // Paystack expects amount in kobo
       currency: "NGN",
-      reference: "BOOKING-" + bookingId, // tie payment to booking
+      reference: "BOOKING-" + bookingId + "-" + Date.now(),
       
       onSuccess: (transaction) => {
-        alert("Payment Successful! Reference: " + transaction.reference);
-        console.log("Booking ID:", bookingId, "Transaction:", transaction);
-        // TODO: send bookingId + transaction.reference to your backend
+        alert(`Payment Successful!\nReference: ${transaction.reference}\nBooking ID: ${bookingId}`);
+        console.log("Payment Details:", {
+          bookingId: bookingId,
+          customerName: customerName,
+          customerEmail: customerEmail,
+          service: bookedService.name,
+          numberOfRooms: numberOfRooms,
+          totalAmount: totalAmount,
+          transaction: transaction
+        });
+        
+        // TODO: Send payment confirmation to your backend
+        // sendPaymentConfirmation({
+        //   bookingId,
+        //   numberOfRooms,
+        //   totalAmount,
+        //   transactionRef: transaction.reference,
+        //   paymentStatus: 'success'
+        // });
       },
       onCancel: () => {
         alert("Payment cancelled.");
+        console.log("Payment cancelled for booking:", bookingId);
       },
     });
   };
+
+  // Debug: Log received state
+  useEffect(() => {
+    console.log("Payment page received state:", state);
+    console.log("Booking ID:", bookingId);
+  }, [state, bookingId]);
 
   return (
     <div className="payment-container">
@@ -60,31 +103,73 @@ const PaymentPage = () => {
 
         <div className="payment-summary">
           <h3>Booking Summary</h3>
+          
+          <div className="summary-row">
+            <span>Customer:</span>
+            <span>{customerName}</span>
+          </div>
+          
           <div className="summary-row">
             <span>Service:</span>
             <span>{bookedService.name}</span>
           </div>
-          {/* <div className="summary-row">
-            <span>Name: </span>
-            <span>{bookedService.name}</span>
-          </div> */}
+          
+          <div className="summary-row">
+            <span>Price per room:</span>
+            <span>₦{basePrice.toLocaleString()}</span>
+          </div>
+
+          {/* Room Selection Section */}
+          <div className="summary-row">
+            <span>Number of Rooms:</span>
+            <div className="room-selector">
+              <button 
+                className="room-btn" 
+                onClick={decrementRooms}
+                disabled={numberOfRooms <= 1}
+              >
+                -
+              </button>
+              <input 
+                type="number" 
+                value={numberOfRooms}
+                onChange={handleRoomChange}
+                min="1"
+                max="50"
+                className="room-input"
+              />
+              <button 
+                className="room-btn" 
+                onClick={incrementRooms}
+                disabled={numberOfRooms >= 50}
+              >
+                +
+              </button>
+            </div>
+          </div>
+          
           <div className="summary-row">
             <span>Booking ID:</span>
             <span>{bookingId}</span>
-          </div>  
+          </div>
+          
+          {/* Show calculation breakdown */}
+          <div className="summary-row calculation">
+            <span>Calculation:</span>
+            <span>{numberOfRooms} room{numberOfRooms > 1 ? 's' : ''} × ₦{basePrice.toLocaleString()}</span>
+          </div>
+          
           <div className="summary-row total">
-            <span>Total:</span>
+            <span>Total Amount:</span>
             <span>₦{totalAmount.toLocaleString()}</span>
           </div>
         </div>
 
         <div className="payment-button">
           <button className="paystack-btn" onClick={payWithPaystack}>
-            Pay Now
+            Pay ₦{totalAmount.toLocaleString()}
           </button>
         </div>
-
-
       </div>
     </div>
   );
