@@ -42,7 +42,7 @@ export default function ServiceDetail() {
               <li key={index}>{detail}</li>
             ))}
           </ul>
-          <Link to={service.paymentLink} className="book-service-button">
+          <Link to="/booking" className="book-service-button">
             Book {service.title}
           </Link>
         </div>
