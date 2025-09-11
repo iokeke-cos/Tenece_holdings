@@ -53,6 +53,26 @@ const PaymentPage = () => {
     setNumberOfRooms(prev => prev > 1 ? prev - 1 : 1);
   };
 
+  // ✅ Send confirmation to backend
+  const sendPaymentConfirmation = async (paymentData) => {
+    try {
+      const response = await fetch("http://localhost:5000/api/payments/confirm", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(paymentData),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to send payment confirmation to backend");
+      }
+
+      const data = await response.json();
+      console.log("Backend confirmation response:", data);
+    } catch (error) {
+      console.error("Error sending payment confirmation:", error);
+    }
+  };
+
   const payWithPaystack = () => {
     const paystack = new PaystackPop();
     paystack.newTransaction({
@@ -65,23 +85,26 @@ const PaymentPage = () => {
       onSuccess: (transaction) => {
         alert(`Payment Successful!\nReference: ${transaction.reference}\nBooking ID: ${bookingId}`);
         console.log("Payment Details:", {
-          bookingId: bookingId,
-          customerName: customerName,
-          customerEmail: customerEmail,
+          bookingId,
+          customerName,
+          customerEmail,
           service: bookedService.name,
-          numberOfRooms: numberOfRooms,
-          totalAmount: totalAmount,
-          transaction: transaction
+          numberOfRooms,
+          totalAmount,
+          transaction
         });
         
-        // TODO: Send payment confirmation to your backend
-        // sendPaymentConfirmation({
-        //   bookingId,
-        //   numberOfRooms,
-        //   totalAmount,
-        //   transactionRef: transaction.reference,
-        //   paymentStatus: 'success'
-        // });
+        // ✅ Send payment confirmation to backend
+        sendPaymentConfirmation({
+          bookingId,
+          customerName,
+          customerEmail,
+          service: bookedService.name,
+          numberOfRooms,
+          totalAmount,
+          transactionRef: transaction.reference,
+          paymentStatus: "success",
+        });
       },
       onCancel: () => {
         alert("Payment cancelled.");
