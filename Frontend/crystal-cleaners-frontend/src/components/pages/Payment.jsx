@@ -14,6 +14,7 @@ const services = [
 ];
 
 const PaymentPage = () => {
+  const { bookingId } = useParams();
   const { state } = useLocation();
   
   // State for room selection
@@ -22,15 +23,11 @@ const PaymentPage = () => {
   const bookedServiceName = state?.serviceType || "Office Cleaning";
   const customerEmail = state?.customerEmail || "customer@email.com";
   const customerName = state?.customerName || "Customer";
-  
-  // Generate proper booking ID with fallback
-  const bookingId = state?.bookingId || (() => {
-    console.warn("No booking ID received from booking form");
-    return "BK-" + Date.now().toString(36).toUpperCase() + Math.random().toString(36).substr(2, 3).toUpperCase();
-  })();
 
   // Find service details
   const bookedService = services.find(s => s.name === bookedServiceName) || services[0];
+
+  console.log('Booking ID from URL:', bookingId);
   
   // Calculate total amount based on number of rooms
   const basePrice = bookedService.price;
@@ -56,7 +53,8 @@ const PaymentPage = () => {
   // ✅ Send confirmation to backend
   const sendPaymentConfirmation = async (paymentData) => {
     try {
-      const response = await fetch("http://localhost:5000/api/payments/confirm", {
+     const response = await fetch(`${import.meta.env.VITE_API_URL}/payments/confirm`, {
+
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(paymentData),
@@ -83,15 +81,15 @@ const PaymentPage = () => {
       reference: "BOOKING-" + bookingId + "-" + Date.now(),
       
       onSuccess: (transaction) => {
-        alert(`Payment Successful!\nReference: ${transaction.reference}\nBooking ID: ${bookingId}`);
-        console.log("Payment Details:", {
+        alert('Payment Successful!\nReference:${transaction.reference}\nBooking ID: ${bookingId}');
+        console.log("Payment Details:" ,{
           bookingId,
           customerName,
           customerEmail,
           service: bookedService.name,
           numberOfRooms,
           totalAmount,
-          transaction
+          transaction,
         });
         
         // ✅ Send payment confirmation to backend

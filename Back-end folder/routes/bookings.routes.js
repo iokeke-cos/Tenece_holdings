@@ -40,7 +40,13 @@ router.post('/', bookingValidationRules, async (req, res) => {
     });
 
     const savedBooking = await booking.save();
-    res.status(201).json(savedBooking);
+    res.status(201).json({
+      success: true,
+      message: "Booking created successfully",
+      bookingId: savedBooking._id,
+      booking: savedBooking
+    });
+
   } catch (error) {
     res.status(500).json({message: 'Error creating booking', error: error.message});
   }

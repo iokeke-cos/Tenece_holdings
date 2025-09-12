@@ -62,7 +62,8 @@ const BookingForm = () => {
     }
 
     try {
-      const response = await fetch("http://localhost:5000/api/bookings", {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/bookings`, {
+
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
@@ -74,7 +75,8 @@ const BookingForm = () => {
       }
 
       const result = await response.json();
-      const bookingId = result.bookingId;
+      const bookingId = result._id;  // instead of result.bookingId
+
 
       setShowSuccess(true);
       
