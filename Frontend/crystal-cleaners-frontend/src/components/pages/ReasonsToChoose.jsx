@@ -27,7 +27,7 @@ export default function ReasonsToChoose() {
               <div className="choose-us-text">
                 <h1
                   className="choose-us-heading"
-                  style={{ fontWeight: "700", fontSize: "45px", fontStyle: "normal", letterSpacing: "-0.01em", width: "537px", height: "120px" }}
+                  // style={{ fontWeight: "700", fontSize: "45px", fontStyle: "normal", letterSpacing: "-0.01em", width: "537px", height: "120px" }}
 
                 >
                   Reasons To Choose <br /> Crystal Cleaners, Today
